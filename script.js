@@ -1,366 +1,419 @@
 // ========================================
-// CELESTE IT - ENHANCED PREMIUM JAVASCRIPT
+// CELESTE IT - FINAL PREMIUM JAVASCRIPT
+// Stable, mobile-aware, reduced-motion-friendly
 // ========================================
 
-// Initialize AOS Animation Library
-AOS.init({
-    duration: 800,
-    once: true,
-    offset: 100,
-    easing: 'ease-out'
-});
+(function () {
+    'use strict';
 
-// ========================================
-// 2. BACK TO TOP BUTTON
-// ========================================
-function initBackToTop() {
-    const button = document.createElement('div');
-    button.className = 'back-to-top';
-    button.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    document.body.appendChild(button);
-    
-    button.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            button.classList.add('visible');
-        } else {
-            button.classList.remove('visible');
-        }
-    });
-}
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const hasAOS = typeof AOS !== 'undefined';
 
-initBackToTop();
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-// ========================================
-// 3. MOUSE FOLLOW GLOW
-// ========================================
-function initMouseGlow() {
-    const glow = document.createElement('div');
-    glow.className = 'mouse-glow';
-    document.body.appendChild(glow);
-    
-    let mouseX = 0, mouseY = 0;
-    let glowX = 0, glowY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        glow.classList.add('active');
-    });
-    
-    function animateGlow() {
-        glowX += (mouseX - glowX) * 0.1;
-        glowY += (mouseY - glowY) * 0.1;
-        glow.style.transform = `translate(${glowX - 150}px, ${glowY - 150}px)`;
-        requestAnimationFrame(animateGlow);
-    }
-    
-    animateGlow();
-    
-    document.addEventListener('mouseleave', () => {
-        glow.classList.remove('active');
-    });
-}
-
-initMouseGlow();
-
-// ========================================
-// 4. RIPPLE EFFECT ON BUTTONS
-// ========================================
-function initRippleEffect() {
-    const buttons = document.querySelectorAll('.btn-primary, .btn-outline');
-    
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            ripple.className = 'ripple';
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.width = ripple.style.height = `${size}px`;
-            ripple.style.left = `${x}px`;
-            ripple.style.top = `${y}px`;
-            ripple.style.position = 'absolute';
-            
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-            
-            setTimeout(() => ripple.remove(), 600);
+    function initAOS() {
+        if (!hasAOS) return;
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            easing: 'ease-out'
         });
-    });
-}
+    }
 
-initRippleEffect();
+    function initBackToTop() {
+        if ($('.back-to-top')) return;
 
-// ========================================
-// 5. TYPING ANIMATION FOR HERO
-// ========================================
-function initTypingAnimation() {
-    const heroSpan = document.querySelector('.hero-title span');
-    if (heroSpan && !heroSpan.hasAttribute('data-typed')) {
-        const originalText = heroSpan.innerText;
+        const button = document.createElement('button');
+        button.className = 'back-to-top';
+        button.type = 'button';
+        button.setAttribute('aria-label', 'Back to top');
+        button.innerHTML = '<i class="fas fa-arrow-up" aria-hidden="true"></i>';
+        document.body.appendChild(button);
+
+        button.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        });
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            window.requestAnimationFrame(() => {
+                button.classList.toggle('visible', window.scrollY > 500);
+                ticking = false;
+            });
+            ticking = true;
+        }, { passive: true });
+    }
+
+    function initMouseGlow() {
+        if (prefersReducedMotion || isTouchDevice || $('.mouse-glow')) return;
+
+        const glow = document.createElement('div');
+        glow.className = 'mouse-glow';
+        document.body.appendChild(glow);
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let glowX = mouseX;
+        let glowY = mouseY;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            glow.classList.add('active');
+        });
+
+        document.addEventListener('mouseleave', () => {
+            glow.classList.remove('active');
+        });
+
+        function animateGlow() {
+            glowX += (mouseX - glowX) * 0.1;
+            glowY += (mouseY - glowY) * 0.1;
+            glow.style.transform = `translate(${glowX - 150}px, ${glowY - 150}px)`;
+            window.requestAnimationFrame(animateGlow);
+        }
+
+        animateGlow();
+    }
+
+    function initRippleEffect() {
+        if (prefersReducedMotion) return;
+
+        $$('.btn-primary, .btn-outline, .btn-nav').forEach((button) => {
+            button.addEventListener('click', function (e) {
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.style.position = 'absolute';
+
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+
+                window.setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    }
+
+    function initTypingAnimation() {
+        if (prefersReducedMotion) return;
+
+        const heroSpan = $('.hero-title span');
+        if (!heroSpan || heroSpan.hasAttribute('data-typed')) return;
+
+        const originalText = heroSpan.textContent.trim();
+        if (!originalText) return;
+
         heroSpan.setAttribute('data-typed', 'true');
-        heroSpan.innerText = '';
+        heroSpan.textContent = '';
         heroSpan.classList.add('typing-text');
-        
-        let i = 0;
+
+        let index = 0;
         function typeWriter() {
-            if (i < originalText.length) {
-                heroSpan.innerText += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 80);
+            if (index < originalText.length) {
+                heroSpan.textContent += originalText.charAt(index);
+                index += 1;
+                window.setTimeout(typeWriter, 70);
             } else {
                 heroSpan.classList.remove('typing-text');
             }
         }
-        
-        setTimeout(typeWriter, 500);
-    }
-}
 
-setTimeout(initTypingAnimation, 100);
-
-// ========================================
-// 6. NUMBER COUNTER ANIMATION
-// ========================================
-function initCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    let counted = false;
-    
-    function startCounters() {
-        if (counted) return;
-        
-        counters.forEach(counter => {
-            const targetText = counter.innerText;
-            const target = parseInt(targetText.replace(/[^0-9]/g, ''));
-            const suffix = targetText.replace(/[0-9]/g, '');
-            
-            if (isNaN(target)) return;
-            
-            let current = 0;
-            const increment = target / 60;
-            
-            const updateCounter = () => {
-                current += increment;
-                if (current < target) {
-                    counter.innerText = Math.floor(current) + suffix;
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    counter.innerText = target + suffix;
-                }
-            };
-            updateCounter();
-        });
-        counted = true;
+        window.setTimeout(typeWriter, 350);
     }
-    
-    const statsSection = document.querySelector('.stats, .about-stats, .value-stats');
-    if (statsSection) {
+
+    function animateCounter(counter) {
+        const targetText = counter.textContent.trim();
+        const target = parseInt(targetText.replace(/[^0-9]/g, ''), 10);
+        const prefix = (targetText.match(/^[^0-9]+/) || [''])[0];
+        const suffix = (targetText.match(/[^0-9]+$/) || [''])[0];
+
+        if (Number.isNaN(target)) return;
+        if (prefersReducedMotion) {
+            counter.textContent = `${prefix}${target}${suffix}`;
+            return;
+        }
+
+        let current = 0;
+        const duration = 1200;
+        const start = performance.now();
+
+        function update(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            current = Math.floor(progress * target);
+            counter.textContent = `${prefix}${current}${suffix}`;
+            if (progress < 1) {
+                window.requestAnimationFrame(update);
+            } else {
+                counter.textContent = `${prefix}${target}${suffix}`;
+            }
+        }
+
+        window.requestAnimationFrame(update);
+    }
+
+    function initCounters() {
+        const counters = $$('.stat-number, .proof-number');
+        if (!counters.length) return;
+
+        const observedSection = $('.stats, .about-stats, .value-stats, .proof-strip');
+        if (!observedSection || !('IntersectionObserver' in window)) {
+            counters.forEach(animateCounter);
+            return;
+        }
+
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    startCounters();
-                    observer.unobserve(entry.target);
-                }
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                counters.forEach(animateCounter);
+                observer.disconnect();
             });
-        }, { threshold: 0.3 });
-        
-        observer.observe(statsSection);
+        }, { threshold: 0.25 });
+
+        observer.observe(observedSection);
     }
-}
 
-initCounters();
+    function initNavbarScroll() {
+        const navbar = $('.navbar');
+        if (!navbar) return;
 
-// ========================================
-// 7. NAVBAR SCROLL EFFECT
-// ========================================
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-// ========================================
-// 8. MOBILE MENU TOGGLE
-// ========================================
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-
-if (hamburger) {
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const icon = hamburger.querySelector('i');
-        if (navLinks.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-}
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        if (hamburger) {
-            const icon = hamburger.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-});
-
-// ========================================
-// 9. PARALLAX EFFECT
-// ========================================
-function initParallax() {
-    const hero = document.querySelector('.hero');
-    if (hero) {
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            hero.style.backgroundPositionY = scrolled * 0.3 + 'px';
+            if (ticking) return;
+            window.requestAnimationFrame(() => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+                ticking = false;
+            });
+            ticking = true;
+        }, { passive: true });
+    }
+
+    function initMobileMenu() {
+        const hamburger = $('#hamburger');
+        const navLinks = $('#navLinks');
+        if (!hamburger || !navLinks) return;
+
+        const icon = $('i', hamburger);
+
+        function setMenuState(open) {
+            navLinks.classList.toggle('active', open);
+            document.body.classList.toggle('menu-open', open);
+            hamburger.setAttribute('aria-expanded', String(open));
+
+            if (icon) {
+                icon.classList.toggle('fa-bars', !open);
+                icon.classList.toggle('fa-times', open);
+            }
+        }
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.contains('active');
+            setMenuState(!isOpen);
+        });
+
+        $$('#navLinks a').forEach((link) => {
+            link.addEventListener('click', () => setMenuState(false));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setMenuState(false);
+        });
+
+        document.addEventListener('click', (e) => {
+            const clickedInsideMenu = navLinks.contains(e.target);
+            const clickedHamburger = hamburger.contains(e.target);
+            if (!clickedInsideMenu && !clickedHamburger && navLinks.classList.contains('active')) {
+                setMenuState(false);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) setMenuState(false);
         });
     }
-}
 
-initParallax();
+    function initParallax() {
+        if (prefersReducedMotion || isTouchDevice) return;
+        const hero = $('.hero');
+        if (!hero) return;
 
-// ========================================
-// 10. SMOOTH SCROLL FOR ANCHOR LINKS
-// ========================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            window.requestAnimationFrame(() => {
+                const scrolled = window.pageYOffset;
+                hero.style.backgroundPositionY = `${scrolled * 0.2}px`;
+                ticking = false;
             });
-        }
-    });
-});
-
-// ========================================
-// 11. DARK MODE LOGO FIX
-// ========================================
-function updateLogoForTheme() {
-    const logo = document.querySelector('.logo-image');
-    const footerLogo = document.querySelector('.footer-logo-image');
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (isDarkMode) {
-        if (logo) logo.style.filter = 'invert(1) brightness(2)';
-        if (footerLogo) footerLogo.style.filter = 'invert(1) brightness(2)';
-    } else {
-        if (logo) logo.style.filter = 'none';
-        if (footerLogo) footerLogo.style.filter = 'none';
+            ticking = true;
+        }, { passive: true });
     }
-}
 
-updateLogoForTheme();
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogoForTheme);
+    function initSmoothScroll() {
+        $$('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                const target = $(href);
+                if (!target) return;
 
-// ========================================
-// 12. ADD PARALLAX BACKGROUND DIVS
-// ========================================
-function addParallaxBg() {
-    const sections = document.querySelectorAll('.hero, .cta, .page-header');
-    sections.forEach(section => {
-        if (!section.querySelector('.parallax-bg')) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    }
+
+    function updateLogoForTheme() {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const logos = $$('.logo-image, .footer-logo-image');
+
+        logos.forEach((logo) => {
+            if (logo.classList.contains('footer-logo-image')) {
+                logo.style.filter = 'brightness(0) invert(1)';
+                return;
+            }
+            logo.style.filter = isDarkMode ? 'invert(1) brightness(2)' : 'none';
+        });
+    }
+
+    function initThemeLogoListener() {
+        updateLogoForTheme();
+        const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+        if (typeof media.addEventListener === 'function') {
+            media.addEventListener('change', updateLogoForTheme);
+        } else if (typeof media.addListener === 'function') {
+            media.addListener(updateLogoForTheme);
+        }
+    }
+
+    function addParallaxBg() {
+        $$('.hero, .cta, .page-header').forEach((section) => {
+            if (section.querySelector('.parallax-bg')) return;
             const bg = document.createElement('div');
             bg.className = 'parallax-bg';
-            section.style.position = 'relative';
+            section.style.position = section.style.position || 'relative';
             section.insertBefore(bg, section.firstChild);
-        }
-    });
-}
+        });
+    }
 
-addParallaxBg();
+    function initContactForm() {
+        const contactForm = $('#contactForm');
+        const formStatus = $('#formStatus');
+        if (!contactForm || !formStatus) return;
 
-// ========================================
-// 13. FORM SUBMIT HANDLER (if contact form exists)
-// ========================================
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
+        contactForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            formStatus.className = 'form-status';
+            formStatus.innerHTML = '<div class="status-sending"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending message...</div>';
 
-if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        formStatus.innerHTML = '<div class="status-sending">Sending message... <i class="fas fa-spinner fa-spin"></i></div>';
-        
-        try {
-            const formData = new FormData(contactForm);
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
-            
-            if (response.ok) {
-                formStatus.innerHTML = '<div class="status-success"><i class="fas fa-check-circle"></i> Message sent successfully! We\'ll get back to you soon.</div>';
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { Accept: 'application/json' }
+                });
+
+                if (!response.ok) throw new Error('Form submission failed');
+
+                formStatus.innerHTML = '<div class="status-success"><i class="fas fa-check-circle" aria-hidden="true"></i> Message sent successfully. We\'ll get back to you soon.</div>';
                 contactForm.reset();
-            } else {
-                throw new Error('Form submission failed');
+            } catch (error) {
+                formStatus.innerHTML = '<div class="status-error"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Something went wrong. Please try again or email us directly at hello@celesteit.com.</div>';
             }
-        } catch (error) {
-            formStatus.innerHTML = '<div class="status-error"><i class="fas fa-exclamation-circle"></i> Something went wrong. Please try again or email us directly at hello@celesteit.com</div>';
-        }
-        
-        setTimeout(() => {
-            formStatus.innerHTML = '';
-        }, 5000);
-    });
-}
 
-// ========================================
-// 14. 3D CARD TILT EFFECT
-// ========================================
-const tiltCards = document.querySelectorAll('.service-card, .feature-card, .industry-card, .team-card');
+            window.setTimeout(() => {
+                formStatus.innerHTML = '';
+                formStatus.className = '';
+            }, 5000);
+        });
+    }
 
-tiltCards.forEach(card => {
-    card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-    });
-});
+    function initTiltCards() {
+        if (prefersReducedMotion || isTouchDevice) return;
 
-// ========================================
-// 15. SCROLL PROGRESS BAR
-// ========================================
-const progressBar = document.createElement('div');
-progressBar.className = 'scroll-progress';
-document.body.appendChild(progressBar);
+        const tiltCards = $$('.service-card, .feature-card, .industry-card, .team-card, .proof-card');
+        tiltCards.forEach((card) => {
+            card.addEventListener('mousemove', function (e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
 
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-    progressBar.style.width = scrollPercent + '%';
-});
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
 
-console.log('Celeste IT - Premium Website Loaded Successfully 🚀');
+                const rotateX = (y - centerY) / 24;
+                const rotateY = (centerX - x) / 24;
+
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = '';
+            });
+        });
+    }
+
+    function initScrollProgressBar() {
+        if ($('.scroll-progress')) return;
+
+        const progressBar = document.createElement('div');
+        progressBar.className = 'scroll-progress';
+        document.body.appendChild(progressBar);
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            window.requestAnimationFrame(() => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = `${scrollPercent}%`;
+                ticking = false;
+            });
+            ticking = true;
+        }, { passive: true });
+    }
+
+    function init() {
+        initAOS();
+        initBackToTop();
+        initMouseGlow();
+        initRippleEffect();
+        initTypingAnimation();
+        initCounters();
+        initNavbarScroll();
+        initMobileMenu();
+        initParallax();
+        initSmoothScroll();
+        initThemeLogoListener();
+        addParallaxBg();
+        initContactForm();
+        initTiltCards();
+        initScrollProgressBar();
+
+        console.log('Celeste IT - Final premium website loaded successfully 🚀');
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
