@@ -1216,6 +1216,95 @@ h2 {
     line-height: 1.7;
 }
 
+/* ========================================
+   MISSION & VISION - Centered Cards
+   ======================================== */
+
+.mission-vision {
+    padding: 80px 0;
+    background: var(--bg-primary);
+}
+
+.mv-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.mission, .vision {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    padding: 40px 30px;
+    border-radius: 24px;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.mission:hover, .vision:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-light);
+}
+
+.mv-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    transition: var(--transition);
+}
+
+.mission:hover .mv-icon,
+.vision:hover .mv-icon {
+    transform: scale(1.05);
+}
+
+.mv-icon i {
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.mission h2, .vision h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.mission p, .vision p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .mv-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 500px;
+    }
+    
+    .mission, .vision {
+        padding: 35px 25px;
+    }
+    
+    .mission h2, .vision h2 {
+        font-size: 1.5rem;
+    }
+    
+    .mission p, .vision p {
+        font-size: 0.9rem;
+    }
+}
+
 /* Team Section */
 .team-section {
     padding: 80px 0;
