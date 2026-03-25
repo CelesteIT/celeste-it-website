@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Celeste IT | Technology Partner for Business Growth</title>
-    
+    <title>Celeste IT | Retail, E-Commerce & Q-Commerce Technology Solutions</title>
+    <meta name="description" content="Celeste IT helps businesses improve retail operations, e-commerce performance, q-commerce integrations, automation, and system reliability.">
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
@@ -27,6 +28,7 @@
                     <img src="images/logo-navbar.png" alt="Celeste IT Logo" class="logo-image">
                 </a>
             </div>
+
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="active">Home</a>
                 <a href="services.html">Services</a>
@@ -34,229 +36,361 @@
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
+
+            <div class="nav-actions desktop-only">
+                <a href="contact.html" class="btn-nav">Book a Consultation</a>
             </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-            <div class="hero-badge">A Technology Partner for Business Growth</div>
-            <h1 class="hero-title">
-                Not just an<br>
-                IT service provider
-            </h1>
-            <p class="hero-description">
-                Celeste IT is a technology solutions provider focused on helping businesses launch, optimize, and scale their digital operations. We specialize in Q-commerce system setup, e-commerce platform integration, startup IT infrastructure planning, and business process optimization.
-            </p>
-            <div class="hero-buttons">
-                <a href="services.html" class="btn-primary">Explore Services <i class="fas fa-arrow-right"></i></a>
-                <a href="contact.html" class="btn-outline">Get in Touch</a>
+        <div class="container hero-grid">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <div class="hero-badge">Retail, E-Commerce & Q-Commerce Technology Partner</div>
+                <h1 class="hero-title">
+                    Technology Solutions Built for <span>Retail Growth</span>
+                </h1>
+                <p class="hero-description">
+                    Celeste IT helps businesses streamline operations, improve system reliability, and scale with confidence through smart technology, automation, e-commerce development, and commerce-focused integrations.
+                </p>
+
+                <div class="hero-points">
+                    <div class="hero-point"><i class="fas fa-check-circle"></i><span>Q-commerce setup and integrations</span></div>
+                    <div class="hero-point"><i class="fas fa-check-circle"></i><span>E-commerce and system development</span></div>
+                    <div class="hero-point"><i class="fas fa-check-circle"></i><span>Automation, reporting, and operational support</span></div>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn-primary">Book a Free Consultation <i class="fas fa-arrow-right"></i></a>
+                    <a href="services.html" class="btn-outline">Explore Our Services</a>
+                </div>
+            </div>
+
+            <div class="hero-highlight-card" data-aos="fade-left" data-aos-duration="1000">
+                <div class="highlight-card">
+                    <div class="highlight-tag">What We Help Fix</div>
+                    <h3>Less chaos. Better systems. Faster operations.</h3>
+                    <ul class="highlight-list">
+                        <li><i class="fas fa-arrow-right"></i> Disconnected business systems</li>
+                        <li><i class="fas fa-arrow-right"></i> Slow manual workflows</li>
+                        <li><i class="fas fa-arrow-right"></i> Weak platform integrations</li>
+                        <li><i class="fas fa-arrow-right"></i> Inventory and reporting gaps</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- Intro / Value Proposition -->
+    <section class="intro-strip">
+        <div class="container">
+            <div class="intro-strip-content" data-aos="fade-up">
+                <span class="section-tag">Why Celeste IT</span>
+                <h2>Not just another IT service provider</h2>
+                <p>
+                    We combine technology, operations, and business understanding to deliver practical solutions that solve real-world problems. From platform setup and system integration to automation and support, we help businesses run smarter, faster, and with fewer operational headaches.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- What We Do Section -->
     <section class="featured-services">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <span class="section-tag">What We Do</span>
                 <h2 class="section-title">Our <span>Core Services</span></h2>
-                <p class="section-subtitle">End-to-end IT and digital commerce solutions for startups, retail companies, and expanding businesses</p>
+                <p class="section-subtitle">
+                    Practical technology solutions for retail businesses, e-commerce brands, startups, SMEs, and growing operations.
+                </p>
             </div>
-            
+
             <div class="services-grid">
                 <div class="service-card" data-aos="fade-up" data-aos-delay="0">
                     <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-bag-shopping"></i>
                     </div>
                     <h3>Q-Commerce Setup & Integration</h3>
-                    <p>Complete quick-commerce operations management with store system setup, platform integrations, and order management systems.</p>
-                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <p>
+                        We support quick-commerce operations with platform setup, store configuration, catalog readiness, system alignment, and smoother day-to-day execution.
+                    </p>
+                    <a href="services.html" class="service-link">View Service <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon">
                         <i class="fas fa-store"></i>
                     </div>
-                    <h3>E-Commerce Platform Development</h3>
-                    <p>Custom online stores, payment gateway integration, product catalog setup, and logistics integration for seamless selling.</p>
-                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <h3>E-Commerce Development</h3>
+                    <p>
+                        We build and improve online commerce experiences with scalable storefronts, payment integration, catalog setup, and stronger customer journeys.
+                    </p>
+                    <a href="services.html" class="service-link">View Service <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <h3>IT Infrastructure Planning</h3>
-                    <p>Network infrastructure, hardware setup, cloud integration, and security planning for new businesses.</p>
-                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-network-wired"></i>
                     </div>
                     <h3>ERP & System Integration</h3>
-                    <p>Connect POS, inventory, e-commerce, and reporting systems for smooth business operations.</p>
-                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <p>
+                        We connect POS, inventory, e-commerce, and reporting systems to reduce manual work, improve visibility, and keep operations aligned.
+                    </p>
+                    <a href="services.html" class="service-link">View Service <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-gears"></i>
+                    </div>
+                    <h3>Automation & Data Workflows</h3>
+                    <p>
+                        We automate repetitive processes, improve reporting accuracy, and build workflows that save time while reducing avoidable errors.
+                    </p>
+                    <a href="services.html" class="service-link">View Service <i class="fas fa-arrow-right"></i></a>
+                </div>
+
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-icon">
-                        <i class="fas fa-database"></i>
+                        <i class="fas fa-server"></i>
                     </div>
-                    <h3>Data Management & Automation</h3>
-                    <p>Database structuring, business intelligence dashboards, and operational automation solutions.</p>
-                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <h3>IT Infrastructure & Support</h3>
+                    <p>
+                        From foundational setup to ongoing technical support, we help businesses keep systems stable, secure, and ready for growth.
+                    </p>
+                    <a href="services.html" class="service-link">View Service <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-icon">
-                        <i class="fas fa-headset"></i>
+                        <i class="fas fa-briefcase"></i>
                     </div>
-                    <h3>Operational IT Consulting</h3>
-                    <p>Expert guidance for technology decisions, system optimization, and business process improvement.</p>
-                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <h3>Business Technology Consulting</h3>
+                    <p>
+                        We help businesses identify gaps, improve workflows, and choose technology solutions that support long-term operational performance.
+                    </p>
+                    <a href="services.html" class="service-link">View Service <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="section-cta" data-aos="fade-up">
+                <a href="services.html" class="btn-outline">See All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Why Businesses Trust Us</span>
+                <h2 class="section-title">Built on <span>Practical Results</span></h2>
+                <p class="section-subtitle">
+                    We focus on systems, workflows, and technology improvements that support real business operations.
+                </p>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-card" data-aos="fade-up">
+                    <div class="trust-number">50+</div>
+                    <h3>Businesses Supported</h3>
+                    <p>Helping businesses improve digital operations, workflows, and system reliability.</p>
+                </div>
+
+                <div class="trust-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="trust-number">100+</div>
+                    <h3>Projects Delivered</h3>
+                    <p>From setup and integration to automation, support, and operational improvements.</p>
+                </div>
+
+                <div class="trust-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="trust-number">98%</div>
+                    <h3>Client Satisfaction</h3>
+                    <p>Focused on practical execution, responsive support, and long-term business value.</p>
+                </div>
+
+                <div class="trust-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="trust-number">24/7</div>
+                    <h3>Support Availability</h3>
+                    <p>Reliable support for businesses that need consistent operational follow-through.</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Why Choose Celeste IT -->
     <section class="why-choose">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Why Choose Us</span>
+                <span class="section-tag">Why Businesses Choose Us</span>
                 <h2 class="section-title">Why <span>Celeste IT</span></h2>
-                <p class="section-subtitle">We combine technical expertise with operational understanding</p>
+                <p class="section-subtitle">We focus on business outcomes, not tech buzzword bingo.</p>
             </div>
-            
+
             <div class="features-grid">
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
                     <div class="feature-icon">
-                        <i class="fas fa-cogs"></i>
+                        <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3>Reliable System Architecture</h3>
-                    <p>Robust, scalable systems built for long-term stability</p>
+                    <h3>Business-Focused Solutions</h3>
+                    <p>Every solution is aligned with your operational goals, workflows, and growth plans.</p>
                 </div>
+
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature-icon">
-                        <i class="fas fa-rocket"></i>
+                        <i class="fas fa-layer-group"></i>
                     </div>
-                    <h3>Smooth Implementation</h3>
-                    <p>Seamless deployment with minimal business disruption</p>
+                    <h3>Strong Operational Understanding</h3>
+                    <p>We understand that technology only matters when it improves how the business actually runs.</p>
                 </div>
+
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="feature-icon">
-                        <i class="fas fa-chart-simple"></i>
+                        <i class="fas fa-screwdriver-wrench"></i>
                     </div>
-                    <h3>Cost-Effective Solutions</h3>
-                    <p>Maximum value without compromising quality</p>
+                    <h3>Practical Implementation</h3>
+                    <p>We deliver systems and processes that are realistic, manageable, and built for real operations.</p>
                 </div>
+
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-handshake"></i>
                     </div>
-                    <h3>Long-Term Scalability</h3>
-                    <p>Solutions that grow with your business</p>
+                    <h3>Long-Term Support</h3>
+                    <p>We aim to be a reliable technology partner, not just a one-time vendor that vanishes into the void.</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Industries We Help -->
     <section class="industries">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Industries We Help</span>
-                <h2 class="section-title">Solutions For <span>Every Business</span></h2>
-                <p class="section-subtitle">Tailored IT solutions for your industry</p>
+                <span class="section-tag">Who We Work With</span>
+                <h2 class="section-title">Solutions For <span>Growth-Focused Businesses</span></h2>
+                <p class="section-subtitle">Especially valuable for companies improving operations through technology.</p>
             </div>
-            
+
             <div class="industries-grid">
                 <div class="industry-card" data-aos="fade-up" data-aos-delay="0">
                     <div class="industry-icon">
                         <i class="fas fa-store"></i>
                     </div>
                     <h3>Retail Businesses</h3>
-                    <p>Digitize operations and expand into online sales</p>
+                    <p>Improve visibility, streamline operations, and strengthen digital commerce performance.</p>
                 </div>
+
                 <div class="industry-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="industry-icon">
-                        <i class="fas fa-rocket"></i>
+                        <i class="fas fa-cart-shopping"></i>
                     </div>
-                    <h3>Startups</h3>
-                    <p>Technology foundation needed to grow from idea to implementation</p>
+                    <h3>E-Commerce Brands</h3>
+                    <p>Build scalable commerce systems that support better customer experience and smoother operations.</p>
                 </div>
+
                 <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="industry-icon">
                         <i class="fas fa-truck-fast"></i>
                     </div>
-                    <h3>Q-Commerce Businesses</h3>
-                    <p>Fast, reliable systems that support rapid order fulfillment</p>
+                    <h3>Q-Commerce Operations</h3>
+                    <p>Support fast-moving delivery businesses with stronger platform workflows and better system alignment.</p>
                 </div>
+
                 <div class="industry-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="industry-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-building"></i>
                     </div>
-                    <h3>SMEs</h3>
-                    <p>Affordable IT solutions that help small and medium businesses scale</p>
+                    <h3>SMEs & Growing Teams</h3>
+                    <p>Adopt practical solutions that reduce friction, improve control, and make scaling less painful.</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Value Proposition -->
+
+    <!-- Operational Value Proposition -->
     <section class="value-prop">
         <div class="container">
             <div class="value-grid">
                 <div class="value-content" data-aos="fade-right">
-                    <h2>Why Businesses Need <span>Celeste IT</span></h2>
-                    <p>Many businesses struggle with disconnected systems, poor IT planning, inefficient workflows, and data management issues.</p>
-                    <p>Celeste IT solves these by building integrated systems, scalable infrastructure, reliable operations, and smart automation.</p>
+                    <span class="section-tag">Operational Value</span>
+                    <h2>Technology that supports <span>real business operations</span></h2>
+                    <p>
+                        Many businesses struggle with disconnected systems, slow manual tasks, weak reporting, and operational bottlenecks that eat time and money.
+                    </p>
+                    <p>
+                        Celeste IT helps fix that with better integrations, stronger workflows, practical automation, and scalable system support.
+                    </p>
+
                     <ul class="value-list">
-                        <li><i class="fas fa-check-circle"></i> Integrated Systems</li>
-                        <li><i class="fas fa-check-circle"></i> Scalable Infrastructure</li>
-                        <li><i class="fas fa-check-circle"></i> Reliable Operations</li>
-                        <li><i class="fas fa-check-circle"></i> Smart Automation</li>
+                        <li><i class="fas fa-check-circle"></i> Better-connected systems</li>
+                        <li><i class="fas fa-check-circle"></i> More reliable operations</li>
+                        <li><i class="fas fa-check-circle"></i> Improved visibility and reporting</li>
+                        <li><i class="fas fa-check-circle"></i> Less manual work and fewer process gaps</li>
                     </ul>
+
+                    <div class="value-buttons">
+                        <a href="contact.html" class="btn-primary">Talk to Our Team <i class="fas fa-arrow-right"></i></a>
+                        <a href="solutions.html" class="btn-outline">View Solutions</a>
+                    </div>
                 </div>
-                <div class="value-stats" data-aos="fade-left">
-                    <div class="stat-card">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Businesses Served</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100+</div>
-                        <div class="stat-label">Projects Completed</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Client Satisfaction</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Support Available</div>
+
+                <div class="mini-case-study" data-aos="fade-left">
+                    <div class="case-card">
+                        <div class="case-tag">What Good Delivery Looks Like</div>
+                        <h3>From messy workflows to smoother execution</h3>
+                        <p>
+                            We help businesses improve system flow, reduce process inefficiencies, and support digital operations with practical execution that makes day-to-day work easier.
+                        </p>
+                        <ul class="case-list">
+                            <li><i class="fas fa-check"></i> Better platform readiness</li>
+                            <li><i class="fas fa-check"></i> More reliable data movement</li>
+                            <li><i class="fas fa-check"></i> Stronger operational consistency</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- CTA Section -->
+
+    <!-- Mid CTA -->
+    <section class="mid-cta">
+        <div class="container">
+            <div class="mid-cta-content" data-aos="zoom-in">
+                <span class="section-tag">Ready to Move Faster?</span>
+                <h2>Let technology push your business forward</h2>
+                <p>
+                    Whether you need better systems, smoother integrations, stronger online operations, or less manual admin chaos, Celeste IT is ready to help.
+                </p>
+                <div class="mid-cta-buttons">
+                    <a href="contact.html" class="btn-primary">Request a Consultation <i class="fas fa-arrow-right"></i></a>
+                    <a href="about.html" class="btn-outline">Learn About Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
     <section class="cta">
         <div class="container">
             <div class="cta-content" data-aos="zoom-in">
-                <h2>Start Your <span>IT Transformation</span> Today</h2>
-                <p>Let's discuss how Celeste IT can help your business grow with the right technology solutions.</p>
-                <a href="contact.html" class="btn-primary">Get in Touch <i class="fas fa-arrow-right"></i></a>
+                <h2>Ready to improve your <span>business operations</span> with the right technology?</h2>
+                <p>
+                    Let’s discuss your goals and build solutions that support growth, efficiency, and long-term performance.
+                </p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn-primary">Get in Touch <i class="fas fa-arrow-right"></i></a>
+                    <a href="services.html" class="btn-outline">Explore Services</a>
+                </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -266,13 +400,16 @@
                         <img src="images/logo.png" alt="Celeste IT Logo" class="footer-logo-image">
                         <span>Celeste IT</span>
                     </div>
-                    <p>A Technology Partner for Business Growth. We help businesses launch, optimize, and scale their digital operations.</p>
+                    <p>
+                        Practical technology solutions for retail, e-commerce, q-commerce, system integration, automation, and business operations.
+                    </p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
@@ -283,23 +420,55 @@
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-contact">
                     <h4>Contact</h4>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> It@celeste.lk</li>
+                        <li><i class="fas fa-envelope"></i> it@celeste.lk</li>
                         <li><i class="fas fa-phone"></i> 076 325 4711</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Global Operations</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</li>
                     </ul>
                 </div>
             </div>
+
             <div class="footer-bottom">
                 <p>&copy; 2026 Celeste IT. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    
+
+    <!-- Floating WhatsApp -->
+    <a 
+        href="https://wa.me/94763254711?text=Hi%20Celeste%20IT%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Celeste IT on WhatsApp"
+    >
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat with us</span>
+    </a>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 80,
+            duration: 800
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', !isExpanded);
+            });
+        }
+    </script>
 </body>
 </html>
