@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Celeste IT | Contact Us</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="contact-page">
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-navbar.png" alt="Celeste IT Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="solutions.html">Solutions</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="active">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content" data-aos="fade-up">
+                <h1>Get In <span>Touch</span></h1>
+                <p>If you're planning to launch or improve your digital business systems, Celeste IT is ready to help.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info" data-aos="fade-right">
+                    <h2>Let's Connect</h2>
+                    <p>Ready to transform your business operations? We're here to help you build the right technology solutions for your growth.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p>hello@celesteit.com</p>
+                                <p>support@celesteit.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>+1 (555) 123-4567</p>
+                                <p>+1 (555) 987-6543</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Office</h4>
+                                <p>Colombo 06, Sri Lanka</p>
+                                <p>Global Operations Center</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form" data-aos="fade-left">
+                    <h2>Start Your IT Transformation Today</h2>
+                    <p style="margin-bottom: 24px; color: var(--text-secondary);">Fill out the form and we'll get back to you within 24 hours.</p>
+                    
+                    <form id="contactForm" action="https://formspree.io/f/mreozyqe" method="POST">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - Celeste IT">
+                        
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="q-commerce">Q-Commerce Setup</option>
+                                <option value="ecommerce">E-Commerce Setup</option>
+                                <option value="infrastructure">IT Infrastructure Planning</option>
+                                <option value="erp">ERP & System Integration</option>
+                                <option value="data">Data Management & Automation</option>
+                                <option value="consulting">Operational IT Consulting</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your business and what you're looking to achieve..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary submit-btn">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Find Us</span>
+                <h2 class="section-title">Our <span>Location</span></h2>
+                <p class="section-subtitle">Visit us at our headquarters in Colombo 06</p>
+            </div>
+            
+            <div class="map-container" data-aos="fade-up" data-aos-delay="100">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9452961009467!2d79.856753!3d6.896595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25a1c3f8b2d2d%3A0x9b7a5c8d5f6e4b1c!2sColombo%2006%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0; border-radius: 24px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            
+            <div class="address-info" data-aos="fade-up" data-aos-delay="200">
+                <div class="address-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Celeste IT Headquarters</h4>
+                        <p>Colombo 06, Sri Lanka</p>
+                        <p>Opening Hours: Monday - Friday, 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Celeste IT Logo" class="footer-logo-image">
+                        <span>Celeste IT</span>
+                    </div>
+                    <p>A Technology Partner for Business Growth. We help businesses launch, optimize, and scale their digital operations.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="solutions.html">Solutions</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> hello@celesteit.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Colombo 06, Sri Lanka</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Celeste IT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Redirect to Thank You Page after form submission -->
+    <script>
+        const form = document.getElementById('contactForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                const btn = document.querySelector('.submit-btn');
+                btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+                btn.disabled = true;
+                
+                // Redirect to thank you page after 3 seconds
+                setTimeout(function() {
+                    window.location.href = 'thankyou.html';
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
