@@ -3632,3 +3632,38 @@ a.btn-outline i {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 }
+/* ========================================
+   FIX SOLUTIONS PAGE NAV BUTTON (MOBILE)
+======================================== */
+
+@media (max-width: 768px) {
+
+    /* shrink and reposition the button */
+    .solutions-page .btn-nav {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+        border-radius: 999px;
+        max-width: 160px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* fix layout alignment */
+    .solutions-page .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* make sure it doesn't collide */
+    .solutions-page .nav-actions {
+        margin-left: auto;
+        margin-right: 8px;
+    }
+
+    /* ensure hamburger stays clean */
+    .solutions-page .hamburger {
+        flex-shrink: 0;
+    }
+}
