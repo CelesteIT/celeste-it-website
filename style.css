@@ -3632,4 +3632,109 @@ a.btn-outline i {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 }
+/* ========================================
+   PREMIUM LOGO BACKGROUND (HERO ONLY)
+   Correct path: images/logo.png
+   Appended only - no existing styles changed
+======================================== */
 
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Logo background layer */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('images/logo.png') center center / 220px no-repeat;
+    opacity: 0.03;
+    filter: blur(0.6px);
+    z-index: 0;
+    pointer-events: none;
+    animation: logoFloat 18s ease-in-out infinite alternate;
+}
+
+/* Keep hero content above logo */
+.hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Premium subtle floating animation */
+@keyframes logoFloat {
+    0% {
+        transform: scale(1) translateY(0px);
+        opacity: 0.03;
+    }
+    50% {
+        transform: scale(1.04) translateY(-8px);
+        opacity: 0.045;
+    }
+    100% {
+        transform: scale(1.08) translateY(6px);
+        opacity: 0.03;
+    }
+}
+
+/* Light mode - keep it extra subtle */
+@media (prefers-color-scheme: light) {
+    .hero::before {
+        opacity: 0.02;
+        filter: blur(0.6px) grayscale(100%);
+    }
+}
+
+/* Dark mode - slightly richer presence */
+@media (prefers-color-scheme: dark) {
+    .hero::before {
+        opacity: 0.04;
+        filter: blur(0.4px) brightness(1.1);
+    }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .hero::before {
+        background-size: 140px;
+        animation-duration: 22s;
+    }
+
+    @media (prefers-color-scheme: light) {
+        .hero::before {
+            opacity: 0.018;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .hero::before {
+            opacity: 0.028;
+        }
+    }
+}
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icons a {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    color: #aaa;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
