@@ -3812,4 +3812,76 @@ a.btn-outline i {
         flex-direction: column;
     }
 }
+/* ========================================
+   MOBILE HAMBURGER FIX
+   Keep current position:
+   logo | CTA | hamburger
+   Only fix Home/About/Contact
+======================================== */
 
+@media (max-width: 768px) {
+    /* keep the same 3-part layout */
+    body:not(.services-page):not(.solutions-page) .nav-container {
+        display: grid !important;
+        grid-template-columns: auto 1fr auto !important;
+        align-items: center !important;
+        column-gap: 12px !important;
+    }
+
+    /* keep CTA visible on mobile for Home/About/Contact */
+    body:not(.services-page):not(.solutions-page) .nav-actions,
+    body:not(.services-page):not(.solutions-page) .nav-actions.desktop-only {
+        display: flex !important;
+        justify-content: center !important;
+        min-width: 0 !important;
+        margin-left: 12px !important;
+        margin-right: 8px !important;
+        pointer-events: auto !important;
+    }
+
+    /* make CTA fit without pushing hamburger away */
+    body:not(.services-page):not(.solutions-page) .btn-nav {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        max-width: 230px !important;
+        padding: 10px 18px !important;
+        font-size: 0.8rem !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    /* keep logo in normal place */
+    body:not(.services-page):not(.solutions-page) .logo a {
+        position: relative !important;
+        left: 0 !important;
+        top: auto !important;
+        transform: none !important;
+    }
+
+    /* THIS is the real fix: hamburger visible + clickable */
+    body:not(.services-page):not(.solutions-page) .hamburger {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 46px !important;
+        height: 46px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+        z-index: 1300 !important;
+        pointer-events: auto !important;
+        flex-shrink: 0 !important;
+    }
+
+    body:not(.services-page):not(.solutions-page) .hamburger i {
+        pointer-events: none !important;
+    }
+
+    /* keep menu above page content */
+    body:not(.services-page):not(.solutions-page) .nav-links {
+        z-index: 1250 !important;
+    }
+}
