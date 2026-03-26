@@ -3813,165 +3813,39 @@ a.btn-outline i {
     }
 }
 /* ========================================
-   🔥 FINAL NAVBAR SYSTEM FIX (GLOBAL)
-   Fixes:
+   MOBILE NAV HOTFIX
+   Only fixes:
    - Home hamburger not clickable
    - About hamburger not visible
-   - CTA breaking mobile layout
-   - Navbar inconsistencies across pages
+   No layout redesign
 ======================================== */
 
-/* ======================
-   BASE SAFETY (ALL DEVICES)
-====================== */
-
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1200;
-}
-
-.nav-container {
-    position: relative;
-    z-index: 1201;
-}
-
-/* ======================
-   MOBILE NAV FIX
-====================== */
-
 @media (max-width: 768px) {
-
-    /* NAVBAR HEIGHT */
-    .navbar,
-    .navbar.scrolled {
-        height: 60px !important;
-    }
-
-    /* CLEAN GRID LAYOUT */
-    .nav-container {
-        display: grid !important;
-        grid-template-columns: auto 1fr auto !important;
-        align-items: center !important;
-        column-gap: 12px !important;
-
-        width: calc(100% - 24px) !important;
-        margin: 0 auto !important;
-        padding: 0 !important;
-    }
-
-    /* 🚫 REMOVE CTA FROM NAVBAR (KEY FIX) */
-    .nav-actions,
-    .nav-actions.desktop-only,
-    .btn-nav {
-        display: none !important;
-        pointer-events: none !important;
-    }
-
-    /* LOGO FIX */
-    .logo {
-        min-width: 0 !important;
-    }
-
-    .logo a {
-        position: relative !important;
-        left: 0 !important;
-        top: auto !important;
-        transform: none !important;
-
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    .logo-image {
-        height: 82px !important;
-        width: auto !important;
-    }
-
-    /* 🍔 HAMBURGER (CRITICAL FIX) */
+    /* keep hamburger clickable on all pages */
     .hamburger {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-
-        width: 46px !important;
-        height: 46px !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
-
-        border-radius: 14px !important;
-
-        background: rgba(15, 15, 16, 0.18) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-
-        backdrop-filter: blur(10px) !important;
-        -webkit-backdrop-filter: blur(10px) !important;
-
-        color: var(--text-primary) !important;
-
-        cursor: pointer !important;
-
         position: relative !important;
         z-index: 1300 !important;
-
         pointer-events: auto !important;
-        flex-shrink: 0 !important;
     }
 
     .hamburger i {
-        font-size: 1.3rem !important;
-        line-height: 1 !important;
         pointer-events: none !important;
     }
 
-    /* 📱 MOBILE MENU PANEL */
+    /* keep mobile menu above page content */
     .nav-links {
-        position: fixed !important;
+        z-index: 1250 !important;
+    }
 
-        top: 60px !important;
-        left: -100% !important;
+    /* About page only: hide long CTA so hamburger has room */
+    .about-page .nav-actions,
+    .about-page .nav-actions.desktop-only {
+        display: none !important;
+    }
 
-        width: 100% !important;
-        height: calc(100vh - 60px) !important;
-
-        background: var(--glass-bg) !important;
-
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-
-        display: flex !important;
-        flex-direction: column !important;
+    .about-page .hamburger {
+        display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-
-        gap: 32px !important;
-
-        transition: 0.3s ease !important;
-
-        z-index: 1250 !important;
-
-        border-top: 1px solid var(--border) !important;
-    }
-
-    .nav-links.active {
-        left: 0 !important;
-    }
-
-    .nav-links a {
-        font-size: 1.15rem !important;
-    }
-}
-
-/* EXTRA SMALL DEVICES */
-@media (max-width: 480px) {
-    .logo-image {
-        height: 74px !important;
-    }
-
-    .hamburger {
-        width: 44px !important;
-        height: 44px !important;
     }
 }
