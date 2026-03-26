@@ -3812,40 +3812,4 @@ a.btn-outline i {
         flex-direction: column;
     }
 }
-/* ========================================
-   MOBILE NAV HOTFIX
-   Only fixes:
-   - Home hamburger not clickable
-   - About hamburger not visible
-   No layout redesign
-======================================== */
 
-@media (max-width: 768px) {
-    /* keep hamburger clickable on all pages */
-    .hamburger {
-        position: relative !important;
-        z-index: 1300 !important;
-        pointer-events: auto !important;
-    }
-
-    .hamburger i {
-        pointer-events: none !important;
-    }
-
-    /* keep mobile menu above page content */
-    .nav-links {
-        z-index: 1250 !important;
-    }
-
-    /* About page only: hide long CTA so hamburger has room */
-    .about-page .nav-actions,
-    .about-page .nav-actions.desktop-only {
-        display: none !important;
-    }
-
-    .about-page .hamburger {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-}
