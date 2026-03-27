@@ -3813,56 +3813,70 @@ a.btn-outline i {
     }
 }
 /* ========================================
-   MOBILE HAMBURGER FIX
-   Keep current position:
+   FINAL MOBILE NAV FIX
+   Keep layout:
    logo | CTA | hamburger
-   Only fix Home/About/Contact
+   Fix only:
+   - Home hamburger click
+   - About hamburger visible
+   - Contact hamburger visible
 ======================================== */
 
 @media (max-width: 768px) {
-    /* keep the same 3-part layout */
-    body:not(.services-page):not(.solutions-page) .nav-container {
+    /* keep the 3-part layout on Home, About, Contact */
+    body:not(.services-page):not(.solutions-page) .nav-container,
+    .about-page .nav-container,
+    .contact-page .nav-container {
         display: grid !important;
-        grid-template-columns: auto 1fr auto !important;
+        grid-template-columns: auto minmax(0, 1fr) auto !important;
         align-items: center !important;
-        column-gap: 12px !important;
+        column-gap: 10px !important;
     }
 
-    /* keep CTA visible on mobile for Home/About/Contact */
+    /* keep CTA visible but controlled */
     body:not(.services-page):not(.solutions-page) .nav-actions,
-    body:not(.services-page):not(.solutions-page) .nav-actions.desktop-only {
+    body:not(.services-page):not(.solutions-page) .nav-actions.desktop-only,
+    .about-page .nav-actions,
+    .about-page .nav-actions.desktop-only,
+    .contact-page .nav-actions,
+    .contact-page .nav-actions.desktop-only {
         display: flex !important;
         justify-content: center !important;
         min-width: 0 !important;
-        margin-left: 12px !important;
-        margin-right: 8px !important;
-        pointer-events: auto !important;
+        margin: 0 !important;
     }
 
-    /* make CTA fit without pushing hamburger away */
-    body:not(.services-page):not(.solutions-page) .btn-nav {
+    /* make CTA smaller so hamburger has room */
+    body:not(.services-page):not(.solutions-page) .btn-nav,
+    .about-page .btn-nav,
+    .contact-page .btn-nav {
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        max-width: 230px !important;
-        padding: 10px 18px !important;
-        font-size: 0.8rem !important;
+        max-width: 185px !important;
+        width: 100% !important;
+        padding: 10px 14px !important;
+        font-size: 0.78rem !important;
         line-height: 1.2 !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
     }
 
-    /* keep logo in normal place */
-    body:not(.services-page):not(.solutions-page) .logo a {
+    /* keep logo where it belongs */
+    body:not(.services-page):not(.solutions-page) .logo a,
+    .about-page .logo a,
+    .contact-page .logo a {
         position: relative !important;
         left: 0 !important;
         top: auto !important;
         transform: none !important;
     }
 
-    /* THIS is the real fix: hamburger visible + clickable */
-    body:not(.services-page):not(.solutions-page) .hamburger {
+    /* hamburger must always be visible + clickable */
+    body:not(.services-page):not(.solutions-page) .hamburger,
+    .about-page .hamburger,
+    .contact-page .hamburger {
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -3870,18 +3884,22 @@ a.btn-outline i {
         height: 46px !important;
         margin: 0 !important;
         padding: 0 !important;
+        flex-shrink: 0 !important;
         position: relative !important;
         z-index: 1300 !important;
         pointer-events: auto !important;
-        flex-shrink: 0 !important;
     }
 
-    body:not(.services-page):not(.solutions-page) .hamburger i {
+    body:not(.services-page):not(.solutions-page) .hamburger i,
+    .about-page .hamburger i,
+    .contact-page .hamburger i {
         pointer-events: none !important;
     }
 
-    /* keep menu above page content */
-    body:not(.services-page):not(.solutions-page) .nav-links {
+    /* menu panel stays above page content */
+    body:not(.services-page):not(.solutions-page) .nav-links,
+    .about-page .nav-links,
+    .contact-page .nav-links {
         z-index: 1250 !important;
     }
 }
