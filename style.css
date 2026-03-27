@@ -3813,93 +3813,60 @@ a.btn-outline i {
     }
 }
 /* ========================================
-   FINAL MOBILE NAV FIX
-   Keep layout:
-   logo | CTA | hamburger
+   FINAL MOBILE HAMBURGER FIX
+   Keep Services/Solutions behavior
    Fix only:
    - Home hamburger click
-   - About hamburger visible
-   - Contact hamburger visible
+   - About hamburger visibility
+   - Contact hamburger visibility
+   No layout redesign
 ======================================== */
 
 @media (max-width: 768px) {
-    /* keep the 3-part layout on Home, About, Contact */
-    body:not(.services-page):not(.solutions-page) .nav-container,
-    .about-page .nav-container,
-    .contact-page .nav-container {
-        display: grid !important;
-        grid-template-columns: auto minmax(0, 1fr) auto !important;
-        align-items: center !important;
-        column-gap: 10px !important;
-    }
-
-    /* keep CTA visible but controlled */
-    body:not(.services-page):not(.solutions-page) .nav-actions,
-    body:not(.services-page):not(.solutions-page) .nav-actions.desktop-only,
-    .about-page .nav-actions,
-    .about-page .nav-actions.desktop-only,
-    .contact-page .nav-actions,
-    .contact-page .nav-actions.desktop-only {
-        display: flex !important;
-        justify-content: center !important;
-        min-width: 0 !important;
-        margin: 0 !important;
-    }
-
-    /* make CTA smaller so hamburger has room */
-    body:not(.services-page):not(.solutions-page) .btn-nav,
-    .about-page .btn-nav,
-    .contact-page .btn-nav {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        max-width: 185px !important;
-        width: 100% !important;
-        padding: 10px 14px !important;
-        font-size: 0.78rem !important;
-        line-height: 1.2 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
-
-    /* keep logo where it belongs */
-    body:not(.services-page):not(.solutions-page) .logo a,
-    .about-page .logo a,
-    .contact-page .logo a {
-        position: relative !important;
-        left: 0 !important;
-        top: auto !important;
-        transform: none !important;
-    }
-
-    /* hamburger must always be visible + clickable */
-    body:not(.services-page):not(.solutions-page) .hamburger,
-    .about-page .hamburger,
-    .contact-page .hamburger {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 46px !important;
-        height: 46px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        flex-shrink: 0 !important;
+    /* Home page: make existing hamburger reliably tappable */
+    body:not(.about-page):not(.contact-page):not(.services-page):not(.solutions-page) .hamburger {
+        display: block !important;
         position: relative !important;
         z-index: 1300 !important;
         pointer-events: auto !important;
     }
 
-    body:not(.services-page):not(.solutions-page) .hamburger i,
+    body:not(.about-page):not(.contact-page):not(.services-page):not(.solutions-page) .hamburger i {
+        pointer-events: none !important;
+    }
+
+    body:not(.about-page):not(.contact-page):not(.services-page):not(.solutions-page) .nav-links {
+        z-index: 1250 !important;
+        top: 55px !important;
+        height: calc(100dvh - 55px) !important;
+    }
+
+    /* About + Contact: match the working behavior of Services/Solutions */
+    .about-page .nav-actions,
+    .about-page .nav-actions.desktop-only,
+    .contact-page .nav-actions,
+    .contact-page .nav-actions.desktop-only {
+        display: none !important;
+    }
+
+    .about-page .hamburger,
+    .contact-page .hamburger {
+        display: block !important;
+        position: relative !important;
+        z-index: 1300 !important;
+        pointer-events: auto !important;
+        margin-left: auto !important;
+    }
+
     .about-page .hamburger i,
     .contact-page .hamburger i {
         pointer-events: none !important;
     }
 
-    /* menu panel stays above page content */
-    body:not(.services-page):not(.solutions-page) .nav-links,
     .about-page .nav-links,
     .contact-page .nav-links {
         z-index: 1250 !important;
+        top: 55px !important;
+        height: calc(100dvh - 55px) !important;
     }
 }
