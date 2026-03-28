@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-// ========================================
 // CELESTE IT - FINAL PREMIUM JAVASCRIPT
 // Stable, mobile-aware, reduced-motion-friendly
-// ========================================
 
 (function () {
     'use strict';
@@ -1006,4 +1003,3 @@
         init();
     }
 })();
->>>>>>> 9db36e72b8a61946b31a28ae968b26fa714edb04

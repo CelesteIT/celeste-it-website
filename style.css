@@ -1,9 +1,8 @@
-<<<<<<< HEAD
-/* ========================================
+
    CELESTE IT - CUSTOM COLOR PALETTE
    Light Mode: #E7E7E7 | Dark Mode: #1B1919 | Footer: #1E1F22
    All layouts, animations, and structure preserved
-   ======================================== */
+
 
 :root {
     /* Typography */
@@ -8040,4 +8039,4 @@ a.btn-outline i {
         height: 42px !important;
     }
 }
->>>>>>> 9db36e72b8a61946b31a28ae968b26fa714edb04
+
