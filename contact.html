@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -696,3 +697,703 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Celeste IT | Contact Us</title>
+    <meta name="description" content="Get in touch with Celeste IT for practical technology solutions, integrations, automation, e-commerce support, and operational improvements for Sri Lankan businesses.">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Contact page-specific fixes -->
+    <style>
+        .contact-section {
+            padding: 100px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        .contact-info,
+        .contact-form {
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: var(--shadow-sm);
+            padding: 34px 30px;
+            height: 100%;
+        }
+
+        .contact-info h2,
+        .contact-form h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            margin-bottom: 14px;
+            color: var(--text-primary);
+        }
+
+        .contact-info-list {
+            display: grid;
+            gap: 16px;
+            margin-top: 26px;
+            margin-bottom: 28px;
+        }
+
+        .contact-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 16px;
+            align-items: start;
+            padding: 18px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+        }
+
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .contact-item p {
+            margin: 0 0 4px 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .contact-social {
+            margin-top: 8px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-social h4 {
+            margin-bottom: 14px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .contact-form form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            color: var(--text-primary);
+            font: inherit;
+            outline: none;
+            transition: var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(201, 163, 95, 0.12);
+        }
+
+        .submit-btn {
+            margin-top: 6px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        #formStatus {
+            margin-top: 18px;
+        }
+
+        .map-section {
+            padding: 0 0 100px;
+        }
+
+        .address-info {
+            margin-top: 22px;
+        }
+
+        .address-card {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 24px;
+            border-radius: 24px;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .address-card i {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        .address-card h4 {
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .address-card p {
+            margin: 0 0 4px 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Premium custom dropdown */
+        .custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select-trigger {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            color: var(--text-primary);
+            font: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            text-align: left;
+        }
+
+        .custom-select-trigger:hover {
+            border-color: var(--accent);
+        }
+
+        .custom-select.open .custom-select-trigger {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(201, 163, 95, 0.12);
+        }
+
+        .custom-select-trigger i {
+            font-size: 0.9rem;
+            transition: transform 0.25s ease;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .custom-select.open .custom-select-trigger i {
+            transform: rotate(180deg);
+        }
+
+        .custom-select-text {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .custom-select-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            right: 0;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.25s ease;
+            z-index: 50;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        .custom-select.open .custom-select-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .custom-select-option {
+            padding: 12px 14px;
+            border-radius: 12px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+
+        .custom-select-option:hover {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .custom-select-option.selected {
+            background: rgba(201, 163, 95, 0.10);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .custom-select-menu::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .custom-select-menu::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-select-menu::-webkit-scrollbar-thumb {
+            background: rgba(201, 163, 95, 0.28);
+            border-radius: 999px;
+        }
+
+        .custom-select-menu::-webkit-scrollbar-thumb:hover {
+            background: rgba(201, 163, 95, 0.42);
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 72px 0;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 24px 20px;
+                border-radius: 24px;
+            }
+
+            .contact-item {
+                grid-template-columns: 48px 1fr;
+                gap: 14px;
+                padding: 16px;
+            }
+
+            .contact-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 16px;
+            }
+
+            .map-section {
+                padding: 0 0 72px;
+            }
+
+            .custom-select-trigger {
+                min-height: 52px;
+                border-radius: 14px;
+            }
+
+            .custom-select-menu {
+                border-radius: 16px;
+            }
+
+            .custom-select-option {
+                padding: 13px 14px;
+            }
+        }
+    </style>
+</head>
+<body class="contact-page">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-navbar.png" alt="Celeste IT Logo" class="logo-image">
+                </a>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="solutions.html">Solutions</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="active">Contact</a>
+            </div>
+
+            <div class="nav-actions desktop-only">
+                <a href="#contactForm" class="btn-nav">Send an Inquiry</a>
+            </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content" data-aos="fade-up">
+                <span class="section-tag">Contact Us</span>
+                <h1>Let’s Talk About <span>Your Business Needs</span></h1>
+                <p>
+                    Whether you need better systems, stronger integrations, smoother operations, or practical technology guidance, we’re here to help.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Strip -->
+    <section class="intro-strip">
+        <div class="container">
+            <div class="intro-strip-content" data-aos="fade-up">
+                <span class="section-tag">Start the Conversation</span>
+                <h2>Tell us what you need. We’ll take it from there.</h2>
+                <p>
+                    We work with businesses looking to improve operations, reduce manual inefficiencies, strengthen digital workflows, and make better use of technology in day-to-day business.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- Contact Information -->
+                <div class="contact-info" data-aos="fade-right">
+                    <span class="section-tag">Get in Touch</span>
+                    <h2>Speak with our team</h2>
+                    <p style="margin-bottom: 28px; color: var(--text-secondary); line-height: 1.8;">
+                        We’d be happy to discuss your requirements and help you identify the right next step for your business.
+                    </p>
+
+                    <div class="contact-info-list">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>it@celeste.lk</p>
+                                <p>We aim to respond within 24 hours.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>076 325 4711</p>
+                                <p>Available during business hours.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4>Office</h4>
+                                <p>Colombo 06, Sri Lanka</p>
+                                <p>Supporting growing businesses with practical technology solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/company/celestelk/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://www.facebook.com/share/1CmKnHUERo/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/celestedaily.lk?igsh=bTF0dWVmMTk5ZDVl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form" data-aos="fade-left">
+                    <h2>Send us a message</h2>
+                    <p style="margin-bottom: 24px; color: var(--text-secondary);">
+                        Fill out the form below and we’ll get back to you as soon as possible.
+                    </p>
+
+                    <form id="contactForm" action="/api/send-message" method="POST">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - Celeste IT">
+                        <input type="hidden" name="_captcha" value="false">
+
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service-hidden">Service Interested In</label>
+
+                            <div class="custom-select" id="serviceSelect">
+                                <button type="button" class="custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                                    <span class="custom-select-text">Select a service</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+
+                                <div class="custom-select-menu" role="listbox">
+                                    <div class="custom-select-option selected" data-value="">Select a service</div>
+                                    <div class="custom-select-option" data-value="q-commerce">Q-Commerce Setup & Operations Support</div>
+                                    <div class="custom-select-option" data-value="e-commerce">E-Commerce Setup & Platform Development</div>
+                                    <div class="custom-select-option" data-value="infrastructure">IT Infrastructure Setup</div>
+                                    <div class="custom-select-option" data-value="erp">ERP & System Integration</div>
+                                    <div class="custom-select-option" data-value="data">Data Management & Automation</div>
+                                    <div class="custom-select-option" data-value="consulting">Operational IT Consulting & Support</div>
+                                    <div class="custom-select-option" data-value="other">Other</div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" id="service-hidden" name="service" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your business and what you’re looking to improve." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary submit-btn">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+
+                    <div id="formStatus"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Find Us</span>
+                <h2 class="section-title">Our <span>Location</span></h2>
+                <p class="section-subtitle">Visit us in Colombo 06, Sri Lanka.</p>
+            </div>
+
+            <div class="map-container" data-aos="fade-up" data-aos-delay="100">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9452961009467!2d79.856753!3d6.896595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25a1c3f8b2d2d%3A0x9b7a5c8d5f6e4b1c!2sColombo%2006%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk"
+                    width="100%"
+                    height="450"
+                    style="border:0; border-radius: 24px;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Celeste IT location map">
+                </iframe>
+            </div>
+
+            <div class="address-info" data-aos="fade-up" data-aos-delay="200">
+                <div class="address-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Celeste IT</h4>
+                        <p>Colombo 06, Sri Lanka</p>
+                        <p>Opening Hours: Monday - Friday, 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mid CTA -->
+    <section class="mid-cta">
+        <div class="container">
+            <div class="mid-cta-content" data-aos="zoom-in">
+                <span class="section-tag">Need Help?</span>
+                <h2>Looking for a practical technology partner?</h2>
+                <p>
+                    We help businesses improve systems, simplify operations, and move forward with more confidence.
+                </p>
+                <div class="mid-cta-buttons">
+                    <a href="services.html" class="btn-outline">View Services</a>
+                    <a href="about.html" class="btn-primary">Learn About Us <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Celeste IT Logo" class="footer-logo-image">
+                        <span>Celeste IT</span>
+                    </div>
+                    <p>
+                        Practical technology solutions for retail, e-commerce, q-commerce, system integration, automation, and business operations.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/celestelk/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1CmKnHUERo/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/celestedaily.lk?igsh=bTF0dWVmMTk5ZDVl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="solutions.html">Solutions</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> it@celeste.lk</li>
+                        <li><i class="fas fa-phone"></i> 076 325 4711</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Celeste IT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a
+        href="https://wa.me/94763254711?text=Hi%20Celeste%20IT%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Celeste IT on WhatsApp"
+    >
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat with us</span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const customSelect = document.getElementById("serviceSelect");
+            if (!customSelect) return;
+
+            const trigger = customSelect.querySelector(".custom-select-trigger");
+            const text = customSelect.querySelector(".custom-select-text");
+            const options = customSelect.querySelectorAll(".custom-select-option");
+            const hiddenInput = document.getElementById("service-hidden");
+
+            trigger.addEventListener("click", function () {
+                const isOpen = customSelect.classList.toggle("open");
+                trigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
+
+            options.forEach(option => {
+                option.addEventListener("click", function () {
+                    options.forEach(opt => opt.classList.remove("selected"));
+                    this.classList.add("selected");
+
+                    const value = this.getAttribute("data-value");
+                    const label = this.textContent.trim();
+
+                    text.textContent = label;
+                    hiddenInput.value = value;
+
+                    customSelect.classList.remove("open");
+                    trigger.setAttribute("aria-expanded", "false");
+                });
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!customSelect.contains(e.target)) {
+                    customSelect.classList.remove("open");
+                    trigger.setAttribute("aria-expanded", "false");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+>>>>>>> 9db36e72b8a61946b31a28ae968b26fa714edb04
