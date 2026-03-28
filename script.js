@@ -323,19 +323,55 @@
             formStatus.innerHTML = '<div class="status-sending"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending message...</div>';
 
             try {
-                const formData = new FormData(contactForm);
+                const hiddenServiceInput = document.getElementById('service-hidden');
+
+                const payload = {
+                    name: contactForm.name ? contactForm.name.value.trim() : '',
+                    email: contactForm.email ? contactForm.email.value.trim() : '',
+                    phone: contactForm.phone ? contactForm.phone.value.trim() : '',
+                    service: hiddenServiceInput ? hiddenServiceInput.value.trim() : '',
+                    message: contactForm.message ? contactForm.message.value.trim() : ''
+                };
+
                 const response = await fetch(contactForm.action, {
                     method: 'POST',
-                    body: formData,
-                    headers: { Accept: 'application/json' }
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
                 });
 
-                if (!response.ok) throw new Error('Form submission failed');
+                if (!response.ok) {
+                    let data = {};
+                    try {
+                        data = await response.json();
+                    } catch (_) {
+                        // ignore json parse failure
+                    }
+                    throw new Error(data.error || 'Failed to send WhatsApp message');
+                }
 
-                formStatus.innerHTML = '<div class="status-success"><i class="fas fa-check-circle" aria-hidden="true"></i> Message sent successfully. We\'ll get back to you soon.</div>';
+                formStatus.innerHTML = '<div class="status-success"><i class="fas fa-check-circle" aria-hidden="true"></i> Message received. Our team will review it and get back to you soon.</div>';
                 contactForm.reset();
+
+                if (hiddenServiceInput) {
+                    hiddenServiceInput.value = '';
+                }
+
+                const customSelect = document.getElementById('serviceSelect');
+                if (customSelect) {
+                    const text = customSelect.querySelector('.custom-select-text');
+                    const options = customSelect.querySelectorAll('.custom-select-option');
+                    if (text) text.textContent = 'Select a service';
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    if (options.length) options[0].classList.add('selected');
+                    customSelect.classList.remove('open');
+                    const trigger = customSelect.querySelector('.custom-select-trigger');
+                    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+                }
             } catch (error) {
-                formStatus.innerHTML = '<div class="status-error"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Something went wrong. Please try again or email us directly at hello@celesteit.com.</div>';
+                formStatus.innerHTML = '<div class="status-error"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Something went wrong. Please try again.</div>';
             }
 
             window.setTimeout(() => {
@@ -391,6 +427,53 @@
         }, { passive: true });
     }
 
+    function initCustomSelect() {
+        const customSelect = document.getElementById('serviceSelect');
+        if (!customSelect) return;
+
+        const trigger = customSelect.querySelector('.custom-select-trigger');
+        const text = customSelect.querySelector('.custom-select-text');
+        const options = customSelect.querySelectorAll('.custom-select-option');
+        const hiddenInput = document.getElementById('service-hidden');
+
+        if (!trigger || !text || !options.length || !hiddenInput) return;
+
+        trigger.addEventListener('click', function () {
+            const isOpen = customSelect.classList.toggle('open');
+            trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        options.forEach(option => {
+            option.addEventListener('click', function () {
+                options.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+
+                const value = this.getAttribute('data-value') || '';
+                const label = this.textContent.trim();
+
+                text.textContent = label;
+                hiddenInput.value = value;
+
+                customSelect.classList.remove('open');
+                trigger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!customSelect.contains(e.target)) {
+                customSelect.classList.remove('open');
+                trigger.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                customSelect.classList.remove('open');
+                trigger.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
     function init() {
         initAOS();
         initBackToTop();
@@ -407,6 +490,7 @@
         initContactForm();
         initTiltCards();
         initScrollProgressBar();
+        initCustomSelect();
 
         console.log('Celeste IT - Final premium website loaded successfully 🚀');
     }
