@@ -1,21 +1,32 @@
+const twilio = require('twilio');
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
-        return res.status(405).send('Method Not Allowed');
+        return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    const { name, email, phone, service, message } = req.body;
-
-    const accountSid = "OR0b7a48652547a3588d504103a4813d23";
-    const authToken = "4157772a09de67237561d8c9cbca08b5";
-
-    const client = require('twilio')(accountSid, authToken);
-
     try {
+        const { name, email, phone, service, message } = req.body || {};
+
+        if (!name || !email || !message) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        const accountSid = process.env.TWILIO_ACCOUNT_SID;
+        const authToken = process.env.TWILIO_AUTH_TOKEN;
+        const fromNumber = process.env.TWILIO_WHATSAPP_NUMBER;
+        const toNumber = process.env.YOUR_WHATSAPP_NUMBER;
+
+        if (!accountSid || !authToken || !fromNumber || !toNumber) {
+            return res.status(500).json({ error: 'Missing Twilio environment variables' });
+        }
+
+        const client = twilio(accountSid, authToken);
+
         await client.messages.create({
-            from: 'whatsapp:+14155238886', // Twilio Sandbox
-            to: 'whatsapp:+9773086768',   // YOUR NUMBER
-            body:
-`🚀 New Inquiry - Celeste IT
+            from: fromNumber,
+            to: toNumber,
+            body: `🚀 New Inquiry - Celeste IT
 
 👤 Name: ${name}
 📧 Email: ${email}
@@ -26,10 +37,11 @@ export default async function handler(req, res) {
 ${message}`
         });
 
-        res.status(200).json({ success: true });
-
+        return res.status(200).json({ success: true });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Failed to send WhatsApp message' });
+        console.error('Twilio send failed:', error);
+        return res.status(500).json({
+            error: error.message || 'Failed to send WhatsApp message'
+        });
     }
 }
