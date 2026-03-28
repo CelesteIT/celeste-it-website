@@ -333,7 +333,7 @@
                     message: contactForm.message ? contactForm.message.value.trim() : ''
                 };
 
-                const response = await fetch(contactForm.action, {
+                const response = await fetch('/api/send-message', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
