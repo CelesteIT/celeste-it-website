@@ -458,23 +458,5 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-    <script>
-        AOS.init({
-            once: true,
-            offset: 80,
-            duration: 800
-        });
-
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-
-        if (hamburger && navLinks) {
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-                hamburger.setAttribute('aria-expanded', !isExpanded);
-            });
-        }
-    </script>
 </body>
 </html>

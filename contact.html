@@ -190,7 +190,6 @@
             line-height: 1.6;
         }
 
-        /* Premium custom dropdown */
         .custom-select {
             position: relative;
             width: 100%;
@@ -655,44 +654,5 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const customSelect = document.getElementById("serviceSelect");
-            if (!customSelect) return;
-
-            const trigger = customSelect.querySelector(".custom-select-trigger");
-            const text = customSelect.querySelector(".custom-select-text");
-            const options = customSelect.querySelectorAll(".custom-select-option");
-            const hiddenInput = document.getElementById("service-hidden");
-
-            trigger.addEventListener("click", function () {
-                const isOpen = customSelect.classList.toggle("open");
-                trigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
-            });
-
-            options.forEach(option => {
-                option.addEventListener("click", function () {
-                    options.forEach(opt => opt.classList.remove("selected"));
-                    this.classList.add("selected");
-
-                    const value = this.getAttribute("data-value");
-                    const label = this.textContent.trim();
-
-                    text.textContent = label;
-                    hiddenInput.value = value;
-
-                    customSelect.classList.remove("open");
-                    trigger.setAttribute("aria-expanded", "false");
-                });
-            });
-
-            document.addEventListener("click", function (e) {
-                if (!customSelect.contains(e.target)) {
-                    customSelect.classList.remove("open");
-                    trigger.setAttribute("aria-expanded", "false");
-                }
-            });
-        });
-    </script>
 </body>
 </html>
