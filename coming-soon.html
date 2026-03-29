@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Celeste IT | Coming Soon</title>
+    <meta name="description" content="Something new is coming soon from Celeste IT. Stay tuned.">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --bg-primary: #F4F4F2;
+            --bg-secondary: #ECECEA;
+            --text-primary: #0F0F10;
+            --text-secondary: #4B5563;
+            --border: rgba(15, 15, 16, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.68);
+            --shadow-sm: 0 8px 30px rgba(15, 15, 16, 0.06);
+            --shadow-lg: 0 24px 60px rgba(15, 15, 16, 0.14);
+            --accent: #111111;
+            --accent-soft: rgba(15, 15, 16, 0.08);
+            --transition: all 0.35s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #0B0B0C;
+                --bg-secondary: #121214;
+                --text-primary: #F5F7FA;
+                --text-secondary: #C5CAD3;
+                --border: rgba(255, 255, 255, 0.08);
+                --glass-bg: rgba(18, 18, 20, 0.70);
+                --shadow-sm: 0 8px 30px rgba(0, 0, 0, 0.24);
+                --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.42);
+                --accent: #C9A35F;
+                --accent-soft: rgba(201, 163, 95, 0.14);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: var(--font-body);
+            background:
+                radial-gradient(circle at top left, var(--accent-soft), transparent 28%),
+                radial-gradient(circle at bottom right, var(--accent-soft), transparent 22%),
+                var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 42px 42px;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        @media (prefers-color-scheme: light) {
+            body::before {
+                background-image:
+                    linear-gradient(rgba(15,15,16,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(15,15,16,0.03) 1px, transparent 1px);
+                opacity: 0.5;
+            }
+        }
+
+        .page-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .coming-soon-card {
+            width: 100%;
+            max-width: 760px;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: var(--shadow-lg);
+            padding: 56px 42px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coming-soon-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top center, var(--accent-soft), transparent 34%);
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+
+        .logo-wrap img {
+            width: auto;
+            height: 120px;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .logo-wrap img {
+                filter: brightness(0) invert(1);
+            }
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.04);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 22px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 8px var(--accent-soft);
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.6rem, 7vw, 4.8rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 18px;
+            color: var(--text-primary);
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .divider {
+            width: 90px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 0 auto 30px;
+            border-radius: 999px;
+        }
+
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 190px;
+            padding: 14px 24px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border: 1px solid var(--text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 0 6px var(--accent-soft);
+        }
+
+        .footer-note {
+            margin-top: 34px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            opacity: 0.92;
+        }
+
+        @media (max-width: 768px) {
+            .coming-soon-card {
+                padding: 42px 22px;
+                border-radius: 24px;
+            }
+
+            .logo-wrap img {
+                height: 92px;
+            }
+
+            .subtitle {
+                font-size: 0.96rem;
+            }
+
+            .action-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+                min-width: unset;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-wrap">
+        <section class="coming-soon-card">
+            <div class="content">
+                <div class="logo-wrap">
+                    <img src="images/logo.png" alt="Celeste IT Logo">
+                </div>
+
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    Coming Soon
+                </div>
+
+                <h1>Something <span class="highlight">New</span> Is On The Way</h1>
+
+                <div class="divider"></div>
+
+                <p class="subtitle">
+                    We’re preparing this page and polishing the final details. It’ll be live soon with the same premium Celeste IT experience.
+                </p>
+
+                <div class="action-row">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+
+                    <a href="contact.html" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i>
+                        Contact Us
+                    </a>
+                </div>
+
+                <p class="footer-note">
+                    Thank you for your patience. We’re building something worth the wait.
+                </p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
