@@ -4285,3 +4285,122 @@ a.btn-outline i {
         padding-top: 56px !important;
     }
 }
+
+/* ========================================
+   COMING SOON OVERLAY
+======================================== */
+
+.coming-soon-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(10, 10, 10, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.coming-soon-box {
+    width: 100%;
+    max-width: 620px;
+    text-align: center;
+    padding: 40px 28px;
+    border-radius: 28px;
+    background: var(--glass-bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.cs-logo {
+    height: 95px;
+    width: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cs-logo {
+        filter: brightness(0) invert(1);
+    }
+}
+
+.cs-badge {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.05);
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.coming-soon-box h1 {
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.coming-soon-box h1 span {
+    color: var(--accent);
+}
+
+.coming-soon-box p {
+    max-width: 520px;
+    margin: 0 auto 26px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.cs-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 190px;
+    padding: 14px 24px;
+    border: 1px solid var(--button-border);
+    border-radius: 999px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.cs-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+@media (max-width: 768px) {
+    .coming-soon-box {
+        padding: 32px 20px;
+        border-radius: 24px;
+    }
+
+    .cs-logo {
+        height: 78px;
+    }
+
+    .coming-soon-box p {
+        font-size: 0.95rem;
+    }
+
+    .cs-btn {
+        width: 100%;
+        min-width: unset;
+    }
+}

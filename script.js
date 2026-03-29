@@ -472,6 +472,24 @@
         });
     }
 
+    function initComingSoonOverlay() {
+        const overlay = document.getElementById('comingSoonOverlay');
+        const enterBtn = document.getElementById('enterSiteBtn');
+
+        if (!overlay || !enterBtn) return;
+
+        overlay.style.display = 'flex';
+
+        enterBtn.addEventListener('click', function () {
+            overlay.style.opacity = '0';
+            overlay.style.visibility = 'hidden';
+
+            window.setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 400);
+        });
+    }
+
     function init() {
         initAOS();
         initBackToTop();
@@ -489,6 +507,7 @@
         initTiltCards();
         initScrollProgressBar();
         initCustomSelect();
+        initComingSoonOverlay();
 
         console.log('Celeste IT - Final premium website loaded successfully 🚀');
     }
