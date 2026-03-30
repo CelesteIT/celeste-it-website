@@ -474,44 +474,72 @@
 
     function initComingSoonOverlay() {
         const overlay = document.getElementById('comingSoonOverlay');
-        const adminAccessBtn = document.getElementById('adminAccessBtn');
-        const adminLoginBox = document.getElementById('adminLoginBox');
+        const loginBox = document.getElementById('adminLoginBox');
         const passwordInput = document.getElementById('adminPasswordInput');
         const enterBtn = document.getElementById('enterSiteBtn');
         const errorText = document.getElementById('adminLoginError');
+        const secretLogo = document.querySelector('#comingSoonOverlay .cs-logo');
 
-        if (!overlay || !adminAccessBtn || !adminLoginBox || !passwordInput || !enterBtn || !errorText) return;
-
-        overlay.style.display = 'flex';
+        if (!overlay || !loginBox || !passwordInput || !enterBtn || !errorText || !secretLogo) return;
 
         const ADMIN_PASSWORD = 'Celeste@HQ2026';
+        const SESSION_KEY = 'celeste_admin_access';
 
-        adminAccessBtn.addEventListener('click', function () {
-            adminLoginBox.classList.toggle('active');
+        let logoTapCount = 0;
+        let logoTapTimer = null;
+
+        function showLoginBox() {
+            loginBox.classList.add('active');
             errorText.textContent = '';
+            window.setTimeout(() => passwordInput.focus(), 60);
+        }
 
-            if (adminLoginBox.classList.contains('active')) {
-                passwordInput.focus();
-            }
-        });
+        function hideOverlay() {
+            overlay.style.opacity = '0';
+            overlay.style.visibility = 'hidden';
+
+            window.setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 400);
+        }
 
         function unlockSite() {
             const enteredPassword = passwordInput.value.trim();
 
             if (enteredPassword === ADMIN_PASSWORD) {
                 errorText.textContent = '';
-                overlay.style.opacity = '0';
-                overlay.style.visibility = 'hidden';
-
-                window.setTimeout(() => {
-                    overlay.style.display = 'none';
-                }, 400);
-
-                sessionStorage.setItem('celeste_admin_access', 'granted');
+                sessionStorage.setItem(SESSION_KEY, 'granted');
+                hideOverlay();
             } else {
                 errorText.textContent = 'Incorrect password.';
+                passwordInput.focus();
+                passwordInput.select();
             }
         }
+
+        if (sessionStorage.getItem(SESSION_KEY) === 'granted') {
+            overlay.style.display = 'none';
+            return;
+        }
+
+        overlay.style.display = 'flex';
+
+        secretLogo.addEventListener('click', function () {
+            logoTapCount += 1;
+
+            if (logoTapTimer) {
+                window.clearTimeout(logoTapTimer);
+            }
+
+            logoTapTimer = window.setTimeout(() => {
+                logoTapCount = 0;
+            }, 900);
+
+            if (logoTapCount >= 3) {
+                logoTapCount = 0;
+                showLoginBox();
+            }
+        });
 
         enterBtn.addEventListener('click', unlockSite);
 
@@ -520,10 +548,6 @@
                 unlockSite();
             }
         });
-
-        if (sessionStorage.getItem('celeste_admin_access') === 'granted') {
-            overlay.style.display = 'none';
-        }
     }
 
     function init() {
