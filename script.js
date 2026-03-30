@@ -472,7 +472,7 @@
         });
     }
 
-    function initComingSoonOverlay() {
+        function initComingSoonOverlay() {
         const overlay = document.getElementById('comingSoonOverlay');
         const loginBox = document.getElementById('adminLoginBox');
         const passwordInput = document.getElementById('adminPasswordInput');
@@ -488,35 +488,7 @@
         let logoTapCount = 0;
         let logoTapTimer = null;
 
-        function showLoginBox() {
-            loginBox.classList.add('active');
-            errorText.textContent = '';
-            window.setTimeout(() => passwordInput.focus(), 60);
-        }
-
-        function hideOverlay() {
-            overlay.style.opacity = '0';
-            overlay.style.visibility = 'hidden';
-
-            window.setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 400);
-        }
-
-        function unlockSite() {
-            const enteredPassword = passwordInput.value.trim();
-
-            if (enteredPassword === ADMIN_PASSWORD) {
-                errorText.textContent = '';
-                sessionStorage.setItem(SESSION_KEY, 'granted');
-                hideOverlay();
-            } else {
-                errorText.textContent = 'Incorrect password.';
-                passwordInput.focus();
-                passwordInput.select();
-            }
-        }
-
+        // 👉 Always show overlay on refresh (unless unlocked)
         if (sessionStorage.getItem(SESSION_KEY) === 'granted') {
             overlay.style.display = 'none';
             return;
@@ -524,25 +496,60 @@
 
         overlay.style.display = 'flex';
 
-        secretLogo.addEventListener('click', function () {
-            logoTapCount += 1;
+        // 🔐 Unlock function (THIS WAS MISSING)
+        function unlockSite() {
+            const enteredPassword = passwordInput.value.trim();
 
-            if (logoTapTimer) {
-                window.clearTimeout(logoTapTimer);
+            if (enteredPassword === ADMIN_PASSWORD) {
+                sessionStorage.setItem(SESSION_KEY, 'granted');
+
+                overlay.classList.add('hidded');
+
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 400);
+
+            } else {
+                errorText.textContent = 'Incorrect password';
+                passwordInput.focus();
             }
+        }
 
-            logoTapTimer = window.setTimeout(() => {
+        // 🔥 Logo pulse animation
+        function pulseLogo(level) {
+            const intensity = level * 6;
+
+            secretLogo.style.transform = `scale(${1 + level * 0.03})`;
+            secretLogo.style.filter = `drop-shadow(0 0 ${12 + intensity}px rgba(201,163,95,0.25))`;
+
+            setTimeout(() => {
+                secretLogo.style.transform = '';
+                secretLogo.style.filter = '';
+            }, 220);
+        }
+
+        // 🎯 Triple click unlock trigger
+        secretLogo.addEventListener('click', function () {
+            logoTapCount++;
+
+            pulseLogo(logoTapCount);
+
+            clearTimeout(logoTapTimer);
+
+            logoTapTimer = setTimeout(() => {
                 logoTapCount = 0;
             }, 900);
 
             if (logoTapCount >= 3) {
                 logoTapCount = 0;
-                showLoginBox();
+                loginBox.classList.add('active');
             }
         });
 
+        // 🔘 Button click
         enterBtn.addEventListener('click', unlockSite);
 
+        // ⌨️ Enter key
         passwordInput.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 unlockSite();
