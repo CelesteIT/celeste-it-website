@@ -474,20 +474,56 @@
 
     function initComingSoonOverlay() {
         const overlay = document.getElementById('comingSoonOverlay');
+        const adminAccessBtn = document.getElementById('adminAccessBtn');
+        const adminLoginBox = document.getElementById('adminLoginBox');
+        const passwordInput = document.getElementById('adminPasswordInput');
         const enterBtn = document.getElementById('enterSiteBtn');
+        const errorText = document.getElementById('adminLoginError');
 
-        if (!overlay || !enterBtn) return;
+        if (!overlay || !adminAccessBtn || !adminLoginBox || !passwordInput || !enterBtn || !errorText) return;
 
         overlay.style.display = 'flex';
 
-        enterBtn.addEventListener('click', function () {
-            overlay.style.opacity = '0';
-            overlay.style.visibility = 'hidden';
+        const ADMIN_PASSWORD = 'Celeste@HQ2026';
 
-            window.setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 400);
+        adminAccessBtn.addEventListener('click', function () {
+            adminLoginBox.classList.toggle('active');
+            errorText.textContent = '';
+
+            if (adminLoginBox.classList.contains('active')) {
+                passwordInput.focus();
+            }
         });
+
+        function unlockSite() {
+            const enteredPassword = passwordInput.value.trim();
+
+            if (enteredPassword === ADMIN_PASSWORD) {
+                errorText.textContent = '';
+                overlay.style.opacity = '0';
+                overlay.style.visibility = 'hidden';
+
+                window.setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 400);
+
+                sessionStorage.setItem('celeste_admin_access', 'granted');
+            } else {
+                errorText.textContent = 'Incorrect password.';
+            }
+        }
+
+        enterBtn.addEventListener('click', unlockSite);
+
+        passwordInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                unlockSite();
+            }
+        });
+
+        if (sessionStorage.getItem('celeste_admin_access') === 'granted') {
+            overlay.style.display = 'none';
+        }
     }
 
     function init() {

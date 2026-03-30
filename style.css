@@ -4225,3 +4225,57 @@ a.btn-outline i {
         min-width: unset;
     }
 }
+.cs-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.admin-login-box {
+    margin-top: 18px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.admin-login-box.active {
+    display: flex;
+}
+
+.admin-password-input {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-primary);
+    font: inherit;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.admin-password-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(201, 163, 95, 0.12);
+}
+
+.cs-btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.cs-btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.admin-login-error {
+    min-height: 20px;
+    font-size: 0.9rem;
+    color: #ff6b6b;
+    margin: 0;
+}

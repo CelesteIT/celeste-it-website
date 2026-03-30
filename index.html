@@ -470,12 +470,27 @@
 
             <p>
                 We’re preparing the final experience and polishing the details.
-                You can still explore our website.
+                Our full website is currently available for internal review only.
             </p>
 
-            <button id="enterSiteBtn" class="cs-btn">
-                View Website
-            </button>
+            <div class="cs-actions">
+                <button id="adminAccessBtn" class="cs-btn">
+                    Admin Access
+                </button>
+            </div>
+
+            <div id="adminLoginBox" class="admin-login-box">
+                <input
+                    type="password"
+                    id="adminPasswordInput"
+                    class="admin-password-input"
+                    placeholder="Enter admin password"
+                >
+                <button id="enterSiteBtn" class="cs-btn cs-btn-secondary">
+                    Enter Website
+                </button>
+                <p id="adminLoginError" class="admin-login-error"></p>
+            </div>
         </div>
     </div>
 </body>
