@@ -4810,17 +4810,7 @@ a.btn-outline i {
 .hero-highlight-card {
     animation: heroFadeUp 0.8s ease-out 0.36s forwards;
 }
-/* STEP 1 — PREMIUM SECTION REVEAL */
-section {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
 
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
 .no-break {
     white-space: nowrap;
 }

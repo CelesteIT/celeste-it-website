@@ -14,10 +14,13 @@
     function initAOS() {
         if (!hasAOS) return;
         AOS.init({
-            duration: 800,
+            duration: 420,
             once: true,
-            offset: 100,
-            easing: 'ease-out'
+            offset: 40,
+            easing: 'ease-out',
+            delay: 0,
+            mirror: false,
+            disable:window.innerWidth <= 768
         });
     }
 
@@ -553,24 +556,6 @@
         });
     }
 
-    function initSectionReveal() {
-        const sections = document.querySelectorAll('section');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.15
-        });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-    }
-
     function init() {
         initAOS();
         initBackToTop();
@@ -589,7 +574,6 @@
         initScrollProgressBar();
         initCustomSelect();
         initComingSoonOverlay();
-        initSectionReveal();
 
         console.log('Celeste IT - Final premium website loaded successfully 🚀');
     }
