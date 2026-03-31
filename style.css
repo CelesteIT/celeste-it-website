@@ -4814,3 +4814,215 @@ a.btn-outline i {
 .no-break {
     white-space: nowrap;
 }
+
+/* ========================================
+   CELESTE IT - REBUILD ENHANCEMENT LAYER
+   Safe premium polish, performance friendly
+   ======================================== */
+
+.no-break {
+    white-space: nowrap;
+}
+
+.hero::before {
+    animation: heroAmbientMove 14s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+}
+
+@keyframes heroAmbientMove {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(18px, -14px, 0) scale(1.08);
+        opacity: 0.92;
+    }
+}
+
+.hero-grid {
+    position: relative;
+}
+
+.hero-grid::before {
+    content: '';
+    position: absolute;
+    right: -5%;
+    top: 8%;
+    width: min(38vw, 420px);
+    height: min(38vw, 420px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 163, 95, 0.15), transparent 68%);
+    filter: blur(10px);
+    pointer-events: none;
+    z-index: 0;
+    animation: heroOrbFloat 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroOrbFloat {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    100% {
+        transform: translate3d(-24px, 20px, 0) scale(1.08);
+    }
+}
+
+.hero-content,
+.hero-highlight-card {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-highlight-card [data-aos],
+.hero-content [data-aos] {
+    transform: none;
+}
+
+.highlight-card {
+    animation-duration: 7.5s;
+}
+
+.hero-badge,
+.section-tag,
+.highlight-tag,
+.case-tag {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-primary,
+.btn-outline,
+.btn-nav,
+.cs-btn {
+    transform: translateZ(0);
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease,
+        background-color 0.28s ease,
+        color 0.28s ease;
+}
+
+.btn-primary:hover,
+.btn-outline:hover,
+.btn-nav:hover,
+.cs-btn:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.service-card::after,
+.feature-card::after,
+.industry-card::after,
+.trust-card::after,
+.proof-card::after {
+    background: linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(201, 163, 95, 0.00) 30%,
+        rgba(201, 163, 95, 0.20) 48%,
+        rgba(255, 255, 255, 0.10) 52%,
+        rgba(201, 163, 95, 0.00) 70%,
+        transparent 100%
+    );
+    transition: left 0.7s ease;
+}
+
+.service-card,
+.feature-card,
+.industry-card,
+.trust-card,
+.proof-card,
+.mid-cta-content,
+.case-card,
+.highlight-card {
+    will-change: transform;
+}
+
+.service-card:hover,
+.feature-card:hover,
+.industry-card:hover,
+.trust-card:hover,
+.proof-card:hover {
+    transform: translateY(-10px);
+}
+
+.services-grid,
+.features-grid,
+.industries-grid,
+.trust-grid,
+.proof-grid {
+    align-items: stretch;
+}
+
+.service-card p,
+.feature-card p,
+.industry-card p,
+.trust-card p {
+    text-wrap: pretty;
+}
+
+.section-header,
+.intro-strip-content,
+.cta-content,
+.mid-cta-content {
+    text-wrap: balance;
+}
+
+.navbar,
+.back-to-top,
+.whatsapp-float,
+.coming-soon-overlay {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+@media (max-width: 1024px) {
+    .hero-grid::before {
+        width: min(48vw, 360px);
+        height: min(48vw, 360px);
+        right: 50%;
+        top: auto;
+        bottom: 2%;
+        transform: translateX(50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .no-break {
+        white-space: normal;
+    }
+
+    .hero::before,
+    .hero-grid::before,
+    .highlight-card,
+    .case-card,
+    .mid-cta-content {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    .hero-badge,
+    .section-tag,
+    .highlight-tag,
+    .case-tag,
+    .navbar,
+    .nav-links,
+    .back-to-top,
+    .whatsapp-float,
+    .coming-soon-overlay,
+    .coming-soon-box {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero::before,
+    .hero-grid::before,
+    .highlight-card,
+    .case-card,
+    .mid-cta-content {
+        animation: none !important;
+    }
+}

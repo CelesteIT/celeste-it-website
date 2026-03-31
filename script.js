@@ -1,5 +1,6 @@
 // CELESTE IT - FINAL PREMIUM JAVASCRIPT
 // Stable, mobile-aware, reduced-motion-friendly
+// Corrected to match current index.html + style.css
 
 (function () {
     'use strict';
@@ -13,6 +14,7 @@
 
     function initAOS() {
         if (!hasAOS) return;
+
         AOS.init({
             duration: 420,
             once: true,
@@ -20,7 +22,7 @@
             easing: 'ease-out',
             delay: 0,
             mirror: false,
-            disable:window.innerWidth <= 768
+            disable: window.innerWidth <= 768 || prefersReducedMotion
         });
     }
 
@@ -108,6 +110,24 @@
         });
     }
 
+    function initMagneticButtons() {
+        if (prefersReducedMotion || isTouchDevice) return;
+
+        $$('.btn-primary, .btn-outline, .btn-nav').forEach((button) => {
+            button.addEventListener('mousemove', function (e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                this.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+            });
+
+            button.addEventListener('mouseleave', function () {
+                this.style.transform = '';
+            });
+        });
+    }
+
     function initTypingAnimation() {
         if (prefersReducedMotion) return;
 
@@ -126,39 +146,41 @@
             if (index < originalText.length) {
                 heroSpan.textContent += originalText.charAt(index);
                 index += 1;
-                window.setTimeout(typeWriter, 70);
+                window.setTimeout(typeWriter, 60);
             } else {
                 heroSpan.classList.remove('typing-text');
             }
         }
 
-        window.setTimeout(typeWriter, 350);
+        window.setTimeout(typeWriter, 260);
     }
 
     function animateCounter(counter) {
         const targetText = counter.textContent.trim();
-        const target = parseInt(targetText.replace(/[^0-9]/g, ''), 10);
+        const numeric = parseInt(targetText.replace(/[^0-9]/g, ''), 10);
         const prefix = (targetText.match(/^[^0-9]+/) || [''])[0];
         const suffix = (targetText.match(/[^0-9]+$/) || [''])[0];
 
-        if (Number.isNaN(target)) return;
+        if (Number.isNaN(numeric)) return;
+
         if (prefersReducedMotion) {
-            counter.textContent = `${prefix}${target}${suffix}`;
+            counter.textContent = `${prefix}${numeric}${suffix}`;
             return;
         }
 
         let current = 0;
-        const duration = 1200;
+        const duration = 1100;
         const start = performance.now();
 
         function update(now) {
             const progress = Math.min((now - start) / duration, 1);
-            current = Math.floor(progress * target);
+            current = Math.floor(progress * numeric);
             counter.textContent = `${prefix}${current}${suffix}`;
+
             if (progress < 1) {
                 window.requestAnimationFrame(update);
             } else {
-                counter.textContent = `${prefix}${target}${suffix}`;
+                counter.textContent = `${prefix}${numeric}${suffix}`;
             }
         }
 
@@ -166,11 +188,13 @@
     }
 
     function initCounters() {
-        const counters = $$('.stat-number, .proof-number');
+        const counters = $$('.stat-number, .proof-number, .trust-number');
         if (!counters.length) return;
 
-        const observedSection = $('.stats, .about-stats, .value-stats, .proof-strip');
-        if (!observedSection || !('IntersectionObserver' in window)) {
+        const observedSection =
+            $('.stats, .about-stats, .value-stats, .proof-strip, .trust-section') || counters[0];
+
+        if (!('IntersectionObserver' in window)) {
             counters.forEach(animateCounter);
             return;
         }
@@ -181,7 +205,7 @@
                 counters.forEach(animateCounter);
                 observer.disconnect();
             });
-        }, { threshold: 0.25 });
+        }, { threshold: 0.2 });
 
         observer.observe(observedSection);
     }
@@ -255,7 +279,7 @@
             if (ticking) return;
             window.requestAnimationFrame(() => {
                 const scrolled = window.pageYOffset;
-                hero.style.backgroundPositionY = `${scrolled * 0.2}px`;
+                hero.style.backgroundPositionY = `${scrolled * 0.12}px`;
                 ticking = false;
             });
             ticking = true;
@@ -267,6 +291,7 @@
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (!href || href === '#') return;
+
                 const target = $(href);
                 if (!target) return;
 
@@ -321,7 +346,8 @@
         contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             formStatus.className = 'form-status';
-            formStatus.innerHTML = '<div class="status-sending"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending message...</div>';
+            formStatus.innerHTML =
+                '<div class="status-sending"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending message...</div>';
 
             try {
                 const hiddenServiceInput = document.getElementById('service-hidden');
@@ -353,7 +379,9 @@
                     throw new Error(data.error || 'Failed to send WhatsApp message');
                 }
 
-                formStatus.innerHTML = '<div class="status-success"><i class="fas fa-check-circle" aria-hidden="true"></i> Message received. Our team will review it and get back to you soon.</div>';
+                formStatus.innerHTML =
+                    '<div class="status-success"><i class="fas fa-check-circle" aria-hidden="true"></i> Message received. Our team will review it and get back to you soon.</div>';
+
                 contactForm.reset();
 
                 if (hiddenServiceInput) {
@@ -364,15 +392,18 @@
                 if (customSelect) {
                     const text = customSelect.querySelector('.custom-select-text');
                     const options = customSelect.querySelectorAll('.custom-select-option');
+
                     if (text) text.textContent = 'Select a service';
                     options.forEach(opt => opt.classList.remove('selected'));
                     if (options.length) options[0].classList.add('selected');
+
                     customSelect.classList.remove('open');
                     const trigger = customSelect.querySelector('.custom-select-trigger');
                     if (trigger) trigger.setAttribute('aria-expanded', 'false');
                 }
             } catch (error) {
-                formStatus.innerHTML = '<div class="status-error"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Something went wrong. Please try again.</div>';
+                formStatus.innerHTML =
+                    '<div class="status-error"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Something went wrong. Please try again.</div>';
             }
 
             window.setTimeout(() => {
@@ -385,7 +416,7 @@
     function initTiltCards() {
         if (prefersReducedMotion || isTouchDevice) return;
 
-        const tiltCards = $$('.service-card, .feature-card, .industry-card, .team-card, .proof-card');
+        const tiltCards = $$('.service-card, .feature-card, .industry-card, .team-card, .proof-card, .trust-card');
         tiltCards.forEach((card) => {
             card.addEventListener('mousemove', function (e) {
                 const rect = this.getBoundingClientRect();
@@ -395,10 +426,11 @@
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
 
-                const rotateX = (y - centerY) / 24;
-                const rotateY = (centerX - x) / 24;
+                const rotateX = (y - centerY) / 30;
+                const rotateY = (centerX - x) / 30;
 
-                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                this.style.transform =
+                    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
             });
 
             card.addEventListener('mouseleave', function () {
@@ -532,7 +564,6 @@
             logoTapCount += 1;
 
             pulseLogo(logoTapCount);
-
             window.clearTimeout(logoTapTimer);
 
             logoTapTimer = window.setTimeout(() => {
@@ -561,6 +592,7 @@
         initBackToTop();
         initMouseGlow();
         initRippleEffect();
+        initMagneticButtons();
         initTypingAnimation();
         initCounters();
         initNavbarScroll();
