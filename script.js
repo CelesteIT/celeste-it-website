@@ -472,7 +472,7 @@
         });
     }
 
-        function initComingSoonOverlay() {
+    function initComingSoonOverlay() {
         const overlay = document.getElementById('comingSoonOverlay');
         const loginBox = document.getElementById('adminLoginBox');
         const passwordInput = document.getElementById('adminPasswordInput');
@@ -488,7 +488,6 @@
         let logoTapCount = 0;
         let logoTapTimer = null;
 
-        // 👉 Always show overlay on refresh (unless unlocked)
         if (sessionStorage.getItem(SESSION_KEY) === 'granted') {
             overlay.style.display = 'none';
             return;
@@ -496,64 +495,79 @@
 
         overlay.style.display = 'flex';
 
-        // 🔐 Unlock function (THIS WAS MISSING)
         function unlockSite() {
             const enteredPassword = passwordInput.value.trim();
 
             if (enteredPassword === ADMIN_PASSWORD) {
                 sessionStorage.setItem(SESSION_KEY, 'granted');
+                errorText.textContent = '';
+                overlay.classList.add('hidden');
 
-                overlay.classList.add('hidded');
-
-                setTimeout(() => {
+                window.setTimeout(() => {
                     overlay.style.display = 'none';
                 }, 400);
-
             } else {
                 errorText.textContent = 'Incorrect password';
                 passwordInput.focus();
+                passwordInput.select();
             }
         }
 
-        // 🔥 Logo pulse animation
         function pulseLogo(level) {
             const intensity = level * 6;
 
             secretLogo.style.transform = `scale(${1 + level * 0.03})`;
             secretLogo.style.filter = `drop-shadow(0 0 ${12 + intensity}px rgba(201,163,95,0.25))`;
 
-            setTimeout(() => {
+            window.setTimeout(() => {
                 secretLogo.style.transform = '';
                 secretLogo.style.filter = '';
             }, 220);
         }
 
-        // 🎯 Triple click unlock trigger
         secretLogo.addEventListener('click', function () {
-            logoTapCount++;
+            logoTapCount += 1;
 
             pulseLogo(logoTapCount);
 
-            clearTimeout(logoTapTimer);
+            window.clearTimeout(logoTapTimer);
 
-            logoTapTimer = setTimeout(() => {
+            logoTapTimer = window.setTimeout(() => {
                 logoTapCount = 0;
             }, 900);
 
             if (logoTapCount >= 3) {
                 logoTapCount = 0;
                 loginBox.classList.add('active');
+                errorText.textContent = '';
+                window.setTimeout(() => passwordInput.focus(), 80);
             }
         });
 
-        // 🔘 Button click
         enterBtn.addEventListener('click', unlockSite);
 
-        // ⌨️ Enter key
         passwordInput.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 unlockSite();
             }
+        });
+    }
+
+    function initSectionReveal() {
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
         });
     }
 
@@ -575,6 +589,7 @@
         initScrollProgressBar();
         initCustomSelect();
         initComingSoonOverlay();
+        initSectionReveal();
 
         console.log('Celeste IT - Final premium website loaded successfully 🚀');
     }
