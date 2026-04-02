@@ -5866,3 +5866,18 @@ body::before {
         padding-top: 16px;
     }
 }
+/* ========================================
+   COMING SOON OVERLAY - WHITE LOGO + WHITE BADGE
+======================================== */
+
+.coming-soon-overlay .cs-logo {
+    filter: brightness(0) invert(1) !important;
+    opacity: 1 !important;
+}
+
+.coming-soon-overlay .cs-badge {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18) !important;
+}
