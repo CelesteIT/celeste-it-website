@@ -153,16 +153,51 @@
         window.addEventListener('resize', update);
     }
 
-    function animateCounter(el) {
+        function animateCounter(el) {
         if (el.dataset.counted === 'true') return;
 
         const raw = el.textContent.trim();
+        el.dataset.counted = 'true';
+
+        /* Special case: values like 24/7 */
+        if (raw.includes('/')) {
+            const parts = raw.split('/');
+            const first = parseInt(parts[0].replace(/[^0-9]/g, ''), 10);
+            const second = parts[1] ? parts[1].trim() : '';
+
+            if (Number.isNaN(first)) {
+                el.textContent = raw;
+                return;
+            }
+
+            if (prefersReducedMotion) {
+                el.textContent = `${first}/${second}`;
+                return;
+            }
+
+            const duration = 1200;
+            const start = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const value = Math.floor(progress * first);
+                el.textContent = `${value}/${second}`;
+                if (progress < 1) {
+                    requestAnimationFrame(tick);
+                } else {
+                    el.textContent = `${first}/${second}`;
+                }
+            }
+
+            requestAnimationFrame(tick);
+            return;
+        }
+
         const target = parseInt(raw.replace(/[^0-9]/g, ''), 10);
         if (Number.isNaN(target)) return;
 
-        el.dataset.counted = 'true';
-
         const suffix = raw.includes('%') ? '%' : raw.includes('+') ? '+' : '';
+
         if (prefersReducedMotion) {
             el.textContent = `${target}${suffix}`;
             return;
