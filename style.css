@@ -962,15 +962,15 @@ h2 {
 /* Footer - #1E1F22 (Fixed Color) */
 .footer {
     background: #1E1F22;
-    padding: 70px 0 30px;
+    padding: 52px 0 22px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1.5fr;
-    gap: 50px;
-    margin-bottom: 50px;
+    gap: 34px;
+    margin-bottom: 32px;
 }
 
 .footer-logo {
@@ -996,7 +996,7 @@ h2 {
 
 .footer-brand p {
     color: #A0A0A0;
-    margin: 20px 0;
+    margin: 16px 0;
     line-height: 1.7;
     font-size: 0.9rem;
 }
@@ -1028,7 +1028,7 @@ h2 {
 .footer-links h4,
 .footer-contact h4 {
     font-size: 1rem;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     color: #FFFFFF;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -1042,7 +1042,7 @@ h2 {
 
 .footer-links ul li,
 .footer-contact ul li {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .footer-links ul li a {
@@ -1072,7 +1072,7 @@ h2 {
 
 .footer-bottom {
     text-align: center;
-    padding-top: 30px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: #808080;
     font-size: 0.8rem;
@@ -1681,7 +1681,7 @@ h2 {
     
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 22px;
     }
     
     .section-title {
@@ -2916,7 +2916,7 @@ textarea:focus-visible {
     }
 
     .footer {
-        padding-top: 60px;
+        padding: 34px 0 18px;
     }
 
     .back-to-top {
@@ -5825,32 +5825,32 @@ body::before {
 .hero {
     background:
         linear-gradient(135deg, rgba(247,245,242,0.50) 0%, rgba(237,233,227,0.64) 100%),
-        url('images/home-hero.jpg') center center / cover no-repeat !important;
+        url('https://i.pinimg.com/736x/77/59/42/775942f5bbcf38ddd4cc271463f7ddeb.jpg') center center / cover no-repeat !important;
     background-attachment: scroll !important;
 }
 
 .services-page .page-header {
     background:
         linear-gradient(135deg, rgba(247,245,242,0.66) 0%, rgba(229,224,217,0.76) 100%),
-        url('images/services-hero.jpg') center center / cover no-repeat !important;
+        url('https://i.pinimg.com/736x/cd/cc/af/cdccaf1ab0cbd7dd4220a1f200dfc052.jpg') center center / cover no-repeat !important;
 }
 
 .solutions-page .page-header {
     background:
         linear-gradient(135deg, rgba(247,245,242,0.70) 0%, rgba(228,223,216,0.80) 100%),
-        url('images/solutions-hero.jpg') center center / cover no-repeat !important;
+        url('https://i.pinimg.com/1200x/33/bf/df/33bfdf3866d3a37ef6a7e62d76a2d36e.jpg') center center / cover no-repeat !important;
 }
 
 .about-page .page-header {
     background:
         linear-gradient(135deg, rgba(247,245,242,0.62) 0%, rgba(232,227,220,0.74) 100%),
-        url('images/about-hero.jpg') center center / cover no-repeat !important;
+        url('https://i.pinimg.com/1200x/16/a1/5e/16a15efc8384032ba9f32ace276ea15c.jpg') center center / cover no-repeat !important;
 }
 
 .contact-page .page-header {
     background:
         linear-gradient(135deg, rgba(247,245,242,0.78) 0%, rgba(223,218,212,0.86) 100%),
-        url('images/contact-hero.jpg') center center / cover no-repeat !important;
+        url('https://i.pinimg.com/1200x/60/a5/ff/60a5ffe1315d3d2838b4e9ea02057cbb.jpg') center center / cover no-repeat !important;
 }
 
 /* stronger text readability */
@@ -5972,5 +5972,29 @@ body::before {
         min-height: auto !important;
         padding-top: 96px !important;
         padding-bottom: 56px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 30px 0 16px;
+    }
+
+    .footer-grid {
+        gap: 18px;
+        margin-bottom: 22px;
+    }
+
+    .footer-brand p {
+        margin: 12px 0;
+    }
+
+    .footer-links h4,
+    .footer-contact h4 {
+        margin-bottom: 12px;
+    }
+
+    .footer-bottom {
+        padding-top: 16px;
     }
 }
