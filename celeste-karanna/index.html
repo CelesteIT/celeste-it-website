@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f8f5">
+  <meta name="description" content="Celeste Karanna — shop with Celeste Daily on Uber Eats or PickMe Market. Explore the campaign and find your favourite shopping platform.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Celeste Karanna | Celeste Daily">
+  <meta property="og:description" content="Celeste Karanna. Your everyday shopping, on Uber Eats and PickMe Market.">
+  <title>Celeste Karanna | Celeste Daily</title>
+  <link rel="preload" as="image" href="assets/hero-desktop.webp" media="(min-width: 701px)">
+  <link rel="preload" as="image" href="assets/hero-mobile.webp" media="(max-width: 700px)">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="topline"><div class="wrap topline-inner"><span>CELESTE DAILY <span class="top-dot" aria-hidden="true"></span> CAMPAIGN EDITION</span><span>කරන්න! <span aria-hidden="true">✳</span></span></div></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Celeste Daily — top of the page"><span class="brand-main">CELESTE</span><span class="brand-small">DAILY</span></a>
+      <span class="header-campaign">CELESTE <span>කරන්න!</span></span>
+      <a class="header-link" href="#shop">SHOP NOW <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <div class="preview-note" id="previewNote" role="status" hidden>PREVIEW MODE: Shopping URLs are not connected yet.</div>
+
+  <main id="main">
+    <section class="hero wrap" id="top" aria-label="Celeste Karanna campaign banner">
+      <div class="section-topline"><span><span class="orange-tiny" aria-hidden="true"></span> THE CAMPAIGN</span><span>CELESTE KARANNA <span class="counter">/ 2026</span></span></div>
+      <picture class="hero-picture">
+        <source media="(max-width: 700px)" srcset="assets/hero-mobile.webp" type="image/webp">
+        <img class="hero-image" src="assets/hero-desktop.webp" alt="Celeste Karanna campaign artwork with two Celeste ambassadors, groceries, Uber Eats and PickMe Market" width="1920" height="720" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="hero-foot"><span>YOUR EVERYDAY, DELIVERED.</span><span class="hero-foot-line" aria-hidden="true"></span><span>CELESTE DAILY</span></div>
+    </section>
+
+    <section class="shop-outer" id="shop" aria-labelledby="shop-heading">
+      <div class="wrap shop-panel">
+        <div class="shop-heading">
+          <p class="eyebrow white-eyebrow"><span class="mini-index">01</span> SHOP CELESTE • NEAR YOU</p>
+          <h1 id="shop-heading">Order now. <em>Shop closer.</em></h1>
+          <p class="shop-sub">Tap your favourite platform. We’ll help you find the nearest Celeste outlet.</p>
+        </div>
+        <div class="shop-actions">
+          <a class="platform-button uber-cta" id="uberEatsLink" href="#shop" aria-label="Shop Celeste Daily on Uber Eats">
+            <span class="platform-logo" id="uberEatsLogo"><img class="app-icon" src="assets/uber-app-icon.png" width="90" height="90" alt="Uber app" decoding="async"></span>
+            <span class="button-right"><span class="button-kicker">SHOP NOW • FIND NEAREST</span><strong>Uber Eats</strong></span>
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="platform-button pickme-cta" id="pickMeMarketLink" href="#shop" aria-label="Shop Celeste Daily on PickMe Market">
+            <span class="platform-logo" id="pickMeMarketLogo"><img class="app-icon" src="assets/pickme-app-icon.png" width="90" height="90" alt="PickMe app" decoding="async"></span>
+            <span class="button-right"><span class="button-kicker">SHOP NOW • FIND NEAREST</span><strong>PickMe Market</strong></span>
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <p id="routingStatus" class="routing-status" role="status" aria-live="polite" hidden></p>
+        <p class="shop-note"><span class="pin-symbol" aria-hidden="true">●</span> Location is requested only after you tap. Nearest outlet is estimated; the shopping app confirms delivery eligibility.</p>
+      </div>
+    </section>
+
+    <section class="ads-section wrap" id="campaign" aria-labelledby="ads-heading">
+      <div class="ads-intro">
+        <div>
+          <p class="eyebrow"><span class="mini-index">02</span> THE COLLECTION</p>
+          <h2 id="ads-heading">Everyday moments.<br><em>The Celeste way.</em></h2>
+        </div>
+        <p>Explore the Celeste Karanna campaign.</p>
+      </div>
+      <!-- Added campaign video gallery. The original image advertisements remain below. -->
+      <div class="campaign-videos" aria-label="Celeste Karanna campaign advertisement videos">
+        <figure class="campaign-video-card">
+          <div class="campaign-video-frame">
+            <video id="adVideo01" class="campaign-ad-video" controls playsinline preload="none"
+                   poster="assets/ad-video-01-poster.webp" width="720" height="900"
+                   aria-label="Celeste Karanna Breakfast campaign advertisement">
+              <source src="assets/ad-video-01.mp4" type="video/mp4">
+              Your browser does not support video playback.
+            </video>
+            <button type="button" class="campaign-video-play" data-video-target="adVideo01"
+                    aria-label="Play Breakfast campaign advertisement">
+              <span class="campaign-video-play-icon" aria-hidden="true">▶</span>
+              <span class="campaign-video-play-label">WATCH AD 01</span>
+            </button>
+          </div>
+          <figcaption class="campaign-video-caption"><span>01 / 03</span><strong>BREAKFAST</strong></figcaption>
+        </figure>
+        <figure class="campaign-video-card">
+          <div class="campaign-video-frame">
+            <video id="adVideo02" class="campaign-ad-video" controls playsinline preload="none"
+                   poster="assets/ad-video-02-poster.webp" width="720" height="900"
+                   aria-label="Celeste Karanna Party campaign advertisement">
+              <source src="assets/ad-video-02.mp4" type="video/mp4">
+              Your browser does not support video playback.
+            </video>
+            <button type="button" class="campaign-video-play" data-video-target="adVideo02"
+                    aria-label="Play Party campaign advertisement">
+              <span class="campaign-video-play-icon" aria-hidden="true">▶</span>
+              <span class="campaign-video-play-label">WATCH AD 02</span>
+            </button>
+          </div>
+          <figcaption class="campaign-video-caption"><span>02 / 03</span><strong>PARTY</strong></figcaption>
+        </figure>
+        <figure class="campaign-video-card">
+          <div class="campaign-video-frame">
+            <video id="adVideo03" class="campaign-ad-video" controls playsinline preload="none"
+                   poster="assets/ad-video-03-poster.webp" width="720" height="900"
+                   aria-label="Celeste Karanna Family campaign advertisement">
+              <source src="assets/ad-video-03.mp4" type="video/mp4">
+              Your browser does not support video playback.
+            </video>
+            <button type="button" class="campaign-video-play" data-video-target="adVideo03"
+                    aria-label="Play Family campaign advertisement">
+              <span class="campaign-video-play-icon" aria-hidden="true">▶</span>
+              <span class="campaign-video-play-label">WATCH AD 03</span>
+            </button>
+          </div>
+          <figcaption class="campaign-video-caption"><span>03 / 03</span><strong>FAMILY</strong></figcaption>
+        </figure>
+      </div>
+
+      <div class="creative-stack">
+        <figure class="creative">
+          <div class="creative-picture">
+            <picture>
+              <source media="(max-width: 700px)" type="image/webp" srcset="assets/ad-breakfast-mobile.webp">
+              <img src="assets/ad-breakfast-desktop.webp" alt="Celeste Karanna breakfast-themed advertisement featuring a shopper, the 24/7 message and delivery branding" width="2000" height="675" decoding="async">
+            </picture>
+          </div>
+          <figcaption><span class="creative-index">01 <span>/ 03</span></span><span class="creative-title">BREAKFAST <span aria-hidden="true">—</span> EVERYDAY MOMENTS</span><span class="creative-mark" aria-hidden="true">✳</span></figcaption>
+        </figure>
+        <figure class="creative">
+          <div class="creative-picture">
+            <picture>
+              <source media="(max-width: 700px)" type="image/webp" srcset="assets/ad-party-mobile.webp">
+              <img src="assets/ad-party-desktop.webp" alt="Celeste Karanna advertisement featuring friends with groceries and 24/7 delivery branding" width="2000" height="675" decoding="async">
+            </picture>
+          </div>
+          <figcaption><span class="creative-index">02 <span>/ 03</span></span><span class="creative-title">PARTY <span aria-hidden="true">—</span> EVERYDAY MOMENTS</span><span class="creative-mark" aria-hidden="true">✳</span></figcaption>
+        </figure>
+        <figure class="creative">
+          <div class="creative-picture">
+            <picture>
+              <source media="(max-width: 700px)" type="image/webp" srcset="assets/ad-family-mobile.webp">
+              <img src="assets/ad-family-desktop.webp" alt="Celeste Karanna family-themed advertisement featuring family members and grocery delivery branding" width="2000" height="675" decoding="async">
+            </picture>
+          </div>
+          <figcaption><span class="creative-index">03 <span>/ 03</span></span><span class="creative-title">FAMILY <span aria-hidden="true">—</span> EVERYDAY MOMENTS</span><span class="creative-mark" aria-hidden="true">✳</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+
+    <section class="closing wrap" aria-label="Shop on Uber Eats or PickMe Market">
+      <span class="closing-asterisk" aria-hidden="true">✳</span>
+      <p>MAKE EVERY DAY A CELESTE DAY</p>
+      <h2>Ready to shop?</h2>
+      <a class="closing-link" href="#shop">CHOOSE YOUR PLATFORM <span aria-hidden="true">↑</span></a>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year">2026</span> CELESTE DAILY</span><span>CELESTE KARANNA <span aria-hidden="true">✳</span></span></div></footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+  <!-- Location is requested ONLY after the user taps a platform. -->
+  <dialog id="outletChooser" class="outlet-dialog" aria-labelledby="outletChooserTitle">
+    <form method="dialog" class="outlet-dialog-shell" id="manualOutletForm">
+      <div class="outlet-dialog-top">
+        <span class="outlet-dialog-kicker">CELESTE DAILY / SHOP NOW</span>
+        <button type="button" class="outlet-dialog-close" id="closeOutletChooser" aria-label="Close outlet selection">✕</button>
+      </div>
+      <h2 id="outletChooserTitle">Choose your <em>Celeste outlet.</em></h2>
+      <p id="outletChooserMessage">Unable to access your location. Select a Celeste outlet to continue.</p>
+      <label for="outletSelect">YOUR PREFERRED LOCATION</label>
+      <select id="outletSelect" required></select>
+      <p class="outlet-dialog-note">Delivery eligibility and availability are confirmed by the selected shopping platform.</p>
+      <div class="outlet-dialog-actions">
+        <button id="confirmOutlet" type="submit" class="outlet-confirm">CONTINUE TO SHOP <span aria-hidden="true">↗</span></button>
+        <button id="retryLocation" type="button" class="outlet-retry">USE MY LOCATION</button>
+      </div>
+    </form>
+  </dialog>
+
+</body>
+</html>
